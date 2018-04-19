@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^5.1.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3"
   }

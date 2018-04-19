@@ -1,0 +1,1186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://naesb.org/espi" targetNamespace="http://naesb.org/espi" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.7">
+	<xs:import namespace="http://www.w3.org/2005/Atom" schemaLocation="atom.xsd"/>
+	<xs:complexType name="ApplicationInformation">
+		<xs:annotation>
+			<xs:documentation>Contains information about a Third Party Application requesting access to the DataCustodian services. Information requested may include items such as Organization Name, Website, Contact Info, Application Name, Description, Icon, Type, default Notification and Callback endpoints, and may also include agreement with terms of service.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="dataCustodianApplicationStatus" type="UInt8" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A code indicating the current status of the application. This value is provided by Data Custodian, cannot be modified by Third Party.
+Defined statuses are:
+1 - Review
+2 - Production (Live)
+3 - On hold 
+4 - Revoked</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataCustodianDefaultBatchResource" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The default endpoint for Batch requests. This value is provided by Data Custodian, updated in approved applications objects, and cannot be modified by Third Party.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataCustodianDefaultSubscriptionResource" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The default endpoint for Subscription requests. This value is provided by Data Custodian, updated in approved applications objects, cannot be modified by Third Party.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataCustodianThirdPartyId" type="String32" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A key to be associated with this application, to be provided in OAuth requests. This value is provided by Data Custodian.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataCustodianThirdPartySecret" type="String32" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A secret to be associated with this application, used to sign OAuth requests. This value is provided by Data Custodian.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationDescription" type="String256" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A description of the application.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationLogo" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The link to the logo image for the application. Size greater than 180 x 150 may be cropped or reduced.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationName" type="String32" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The name of the application to which access will be granted.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationStatus" type="UInt8" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A code indicating the current status of the application. 
+Defined statuses are:
+1 - Development
+2 - Review / Test
+3 - Production (Live)
+4 - Retired (Remove)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationType" type="UInt8" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A code indicating the type of the application. 
+Defined types are:
+1 - Web Application
+2 - Desktop Application
+3 - Mobile Application</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationUse" type="UInt8" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A code indicating the expected use of the application. 
+Defined uses are:
+1 - Energy management
+2 - Comparisons
+3 - Government
+4 - Academic
+5 - Law enforcement</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyApplicationWebsite" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The link to the main page of the application.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyDefaultBatchResource" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The default endpoint for asynchronous delivery of Batch data using push.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyDefaultNotifyResource" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The default endpoint for Third Party notification of Batch data availability  that is then requested from the Data Custodian via the Batch resource.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyDefaultOAuthCallback" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The default redirect back to the application after authorization grant.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyEmail" type="String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The e-mail address of the organization to which access will be granted. (For debugging - not to be shared with customers)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyName" type="String64" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The name of the organization to which access will be granted.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdPartyPhone" type="String32" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The phone number of the organization to which access will be granted. (For debugging - not to be shared with customers)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Authorization">
+		<xs:annotation>
+			<xs:documentation>Represents a permission granted by an owner for access to a resource.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="accessToken" minOccurs="0" maxOccurs="1" type="String32">
+						<xs:annotation>
+							<xs:documentation>Contains the access token associated with this authorization.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="authorizationServer" minOccurs="0" maxOccurs="1" type="xs:anyURI">
+						<xs:annotation>
+							<xs:documentation>Contains the URI link to the authorization endpoint associated with this authorization.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="authorizedPeriod" minOccurs="0" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>Restricts access to requests or subscriptions within this date time interval.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="publishedPeriod" minOccurs="0" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>Restricts access to the objects within the associated resource that were published within this date time interval.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="resource" minOccurs="0" maxOccurs="1" type="xs:anyURI">
+						<xs:annotation>
+							<xs:documentation>Contains the identifier of the resource, same as was specified in OAuth "scope".</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="status" minOccurs="0" maxOccurs="1" type="UInt8">
+						<xs:annotation>
+							<xs:documentation>The status of this authorization. 
+0 - Revoked
+1 - Active</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thirdParty" minOccurs="0" maxOccurs="1" type="String32">
+						<xs:annotation>
+							<xs:documentation>Contains the identifier for the Third Party.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IntervalBlock">
+		<xs:annotation>
+			<xs:documentation>Time sequence of Readings of the same ReadingType.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="interval" minOccurs="0" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>Specifies the time period during which the contained readings were taken.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IntervalReading" type="IntervalReading" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IntervalReading">
+		<xs:annotation>
+			<xs:documentation>Specific value measured by a meter or other asset. Each Reading is associated with a specific ReadingType.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="cost" minOccurs="0" maxOccurs="1" type="UInt48">
+						<xs:annotation>
+							<xs:documentation>Specifies a cost associated with this reading, in hundred-thousandths of the currency specified in the ReadingType for this reading.  (e.g., 840 = USD, US dollar)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ReadingQuality" type="ReadingQuality" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="timePeriod" minOccurs="0" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>The date time and duration of a reading. If not specified, readings for each "intervalLength" in ReadingType are present.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value" minOccurs="0" maxOccurs="1" type="UInt48">
+						<xs:annotation>
+							<xs:documentation>Value in units specified by ReadingType</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MeterReading">
+		<xs:annotation>
+			<xs:documentation>Set of values obtained from the meter.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReadingQuality">
+		<xs:annotation>
+			<xs:documentation>Quality of a specific reading value or interval reading value. Note that more than one Quality may be applicable to a given Reading. Typically not used unless problems or unusual conditions occur (i.e., quality for each Reading is assumed to be 'Good' (valid) unless stated otherwise in associated ReadingQuality).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="quality" minOccurs="1" maxOccurs="1" type="QualityOfReading">
+						<xs:annotation>
+							<xs:documentation>Quality, to be specified if different than ReadingType.defaultQuality.
+
+The specific format  is specified per the standard is defined in QualityOfReading.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReadingType">
+		<xs:annotation>
+			<xs:documentation>Characteristics associated with all Readings included in a MeterReading.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="accumulationBehaviour" minOccurs="0" maxOccurs="1" type="AccumulationBehaviourType">
+						<xs:annotation>
+							<xs:documentation>Code indicating how value is accumulated over time for Readings of ReadingType. The list of valid values per the standard are defined in AccumulationBehaviorType.
+
+Examples are:
+0 = Not Applicable
+1 = BulkQuantity
+3 = Cumulative</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="commodity" minOccurs="0" maxOccurs="1" type="CommodityType">
+						<xs:annotation>
+							<xs:documentation>Code for commodity classification of Readings of ReadingType. The valid values per the standard are defined in CommodityType.
+
+Examples are:
+0 = Not Applicable
+1 = Electricity secondary metered value (a premise meter is typically a secondary meter)
+2 = Electricity primary metered value
+4 = Air
+7 = NaturalGas</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="consumptionTier" minOccurs="0" maxOccurs="1" type="ConsumptionTierType">
+						<xs:annotation>
+							<xs:documentation>Code for consumption tier associated with a Reading of ReadingType. The valid values are define in ConsumptionTierType.
+
+Examples are:
+0 = Not Applicable
+1 = Block Tier 1
+2 = Block Tier 2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="currency" minOccurs="0" maxOccurs="1" type="CurrencyCode">
+						<xs:annotation>
+							<xs:documentation>Code for the currency for costs associated with this ReadingType.  The valid values per the standard are defined in CurrencyCode.
+
+Examples are:
+0 - Not Applicable
+36 - Australian Dollar
+124 - Canadian Dollar
+840 - US Dollar
+978 - Euro</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dataQualifier" minOccurs="0" maxOccurs="1" type="DataQualifierType">
+						<xs:annotation>
+							<xs:documentation>Code describing a salient attribute of Readings of ReadingType. Valid values per the standard are defined in DataQualifierType.
+
+Examples are:
+0 = Not Applicable
+2 = Average</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="defaultQuality" minOccurs="0" maxOccurs="1" type="QualityOfReading">
+						<xs:annotation>
+							<xs:documentation>Default value to be used if no value of ReadingQuality.quality is provided.  
+
+Specific format and valid values per the standard are specified in QualityOfReading.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flowDirection" minOccurs="0" maxOccurs="1" type="FlowDirectionType">
+						<xs:annotation>
+							<xs:documentation>Direction associated with current related Readings. valid values per the standard are defined in FlowDirectionType.
+
+Examples are:
+0 = Not Applicable
+1 = Forward
+19 = Reverse</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="intervalLength" minOccurs="0" maxOccurs="1" type="UInt32">
+						<xs:annotation>
+							<xs:documentation>Default interval length specified in seconds for Readings of ReadingType.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="kind" minOccurs="0" maxOccurs="1" type="KindType">
+						<xs:annotation>
+							<xs:documentation>Code for general classification of a Reading of ReadingType. Valid values per the standard are defined in KindType.
+
+Examples are:
+
+0 = Not Applicable
+3 = Currency
+8 = Demand</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="phase" minOccurs="0" maxOccurs="1" type="PhaseCode">
+						<xs:annotation>
+							<xs:documentation>Code for phase information associated with Readings of ReadingType. Valid values per the standard are defined in PhaseCode.
+
+Examples are:
+0 = Not Applicable
+129 = Phase AN
+128 = Phase A
+132 = Phase AB</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="powerOfTenMultiplier" minOccurs="0" maxOccurs="1" type="PowerOfTenMultiplierType">
+						<xs:annotation>
+							<xs:documentation>Code for the power of ten multiplier which, when used in combination with the uom, specifies the actual unit of measure for Readings of ReadingType. Valid values per the standard are defined in PowerOfTenMultiplierType.
+
+Examples are:
+0 = None
+1 = deca=x10
+2 = hecto=x100
+-3 = mili=x10-3</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="timeAttribute" minOccurs="0" maxOccurs="1" type="TimeAttributeType">
+						<xs:annotation>
+							<xs:documentation>Code used to specify a particular type of time interval method for Readings of ReadingType. Valid values per the standard are defined in TimeAttributeType.
+
+Examplesare:
+0 = Not Applicable
+1 = 10-minute
+2 = 15-minute</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="tou" minOccurs="0" maxOccurs="1" type="TOUType">
+						<xs:annotation>
+							<xs:documentation>Code for the TOU type of Readings of ReadingType. valid values per the standard are defined in TOUType.
+Examples are:
+0 = NotApplicable
+1 = TOU A
+2 = TOU B</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uom" minOccurs="0" maxOccurs="1" type="UomType">
+						<xs:annotation>
+							<xs:documentation>Code for the base unit of measure for Readings of ReadingType.  Used in combination with the powerOfTenMultiplier to specify the actual unit of measure. Valid values per the standard are defined in UomType.
+
+Examples are:
+0 = Not Applicable
+5 = A (Current)
+29 = Voltage</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IdentifiedObject">
+		<xs:annotation>
+			<xs:documentation>This is a root class to provide common naming attributes for all classes needing naming attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="BatchItemInfo" type="BatchItemInfo" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceCategory">
+		<xs:annotation>
+			<xs:documentation>Category of service provided to the customer.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="kind" minOccurs="1" maxOccurs="1" type="ServiceKind">
+						<xs:annotation>
+							<xs:documentation>Service classification
+Examples are:
+0 - electricity
+1 - gas
+
+The list of specific valid values per the standard are itemized in ServiceKind.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UsagePoint">
+		<xs:annotation>
+			<xs:documentation>Logical point on a network at which consumption or production is either physically measured (e.g., metered) or estimated (e.g., unmetered street lights).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="roleFlags" minOccurs="0" maxOccurs="1" type="HexBinary16">
+						<xs:annotation>
+							<xs:documentation>Specifies the roles that this usage point has been assigned.
+Bit 1 - isMirror
+Bit 2 - isPremisesAggregationPoint
+Bit 3 - isPEV
+Bit 4 - isDER
+Bit 5 - isRevenueQuality
+Bit 6 - isDC
+Bit 7-16 - Reserved</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ServiceCategory" type="ServiceCategory" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="status" minOccurs="0" maxOccurs="1" type="UInt8">
+						<xs:annotation>
+							<xs:documentation>Specifies the current status of this usage point.
+
+Valid values include:
+
+0 = off
+1 = on</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ElectricPowerQualitySummary">
+		<xs:annotation>
+			<xs:documentation>A summary of power quality events. This information represents a summary of power quality information typically required by customer facility energy management systems. It is not intended to satisfy the detailed requirements of power quality monitoring. All values are as defined by measurementProtocol during the period. The standards typically also give ranges of allowed values; the information attributes are the raw measurements, not the "yes/no" determination by the various standards. See referenced standards for definition, measurement protocol  and period.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="flickerPlt" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A measurement of long term Rapid Voltage Change in hundredths of a Volt.
+
+flickerPlt is derived from 2 hours of Pst values (12 values combined in cubic relationship).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="flickerPst" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>flickerPst is a value measured over 10 minutes that characterizes the likelihood that the voltage fluctuations would result in perceptible light flicker. A value of 1.0 is designed to represent the level that 50% of people would perceive flicker in a 60 watt incandescent bulb. 
+
+The value reported is represented as an integer in hundredths.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="harmonicVoltage" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A measurement of the Harmonic Voltage during the period. For DC, distortion is with respect to a signal of zero Hz.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="longInterruptions" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Long Interruption events (as defined by measurementProtocol) during the summary interval period.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="mainsVoltage" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A measurement of the Mains [Signaling] Voltage during the summary interval period in uV.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="measurementProtocol" minOccurs="0" maxOccurs="1" type="UInt8">
+						<xs:annotation>
+							<xs:documentation>A reference to the source standard used as the measurement protocol definition. 
+
+Examples are:
+0 = "IEEE1519-2009"
+1 = "EN50160"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="powerFrequency" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A measurement of the power frequency during the summary interval period in uHz.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="rapidVoltageChanges" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Rapid Voltage Change events during the summary interval period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="shortInterruptions" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Short Interruption events during the summary interval period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="summaryInterval" minOccurs="1" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>Interval of summary period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="supplyVoltageDips" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Supply Voltage Dip events during the summary interval period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="supplyVoltageImbalance" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Supply Voltage Imbalance events during the summary interval period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="supplyVoltageVariations" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Supply Voltage Variations during the summary interval period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="tempOvervoltage" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>A count of Temporary Overvoltage events (as defined by measurementProtocol) during the summary interval period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ElectricPowerUsageSummary">
+		<xs:annotation>
+			<xs:documentation>Summary of usage for a billing period</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="billingPeriod" minOccurs="0" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>The billing period to which the included measurements apply</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="billLastPeriod" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>The amount of the bill for the previous billing period , in hundred-thousandths of the currency specified in the ReadingType for this reading (e.g., 840 = USD, US dollar).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="billToDate" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>The bill amount related to the billing period as of the date received, in hundred-thousandths of the currency specified in the ReadingType for this reading. (e.g., 840 = USD, US dollar).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="costAdditionalLastPeriod" minOccurs="0" maxOccurs="1" type="Int48">
+						<xs:annotation>
+							<xs:documentation>Additional charges from the last billing period, in hundred-thousandths of the currency specified in the ReadingType for this reading.  (e.g., 840 = USD, US dollar).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="currency" minOccurs="0" maxOccurs="1" type="CurrencyCode">
+						<xs:annotation>
+							<xs:documentation>The ISO 4217 code indicating the currency applicable to the bill amounts in the summary. See list at http://tiny.cc/4217</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="currentBillingPeriodOverAllConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>The total consumption for the billing period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="currentDayLastYearNetConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>The amount of energy consumed one year ago interpreted as same day of week same week of year (see ISO 8601).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="currentDayNetConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>Net consumption for the current day (delivered - received)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="currentDayOverallConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>Overall energy consumption for the current day</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="peakDemand" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>Peak demand recorded for the current period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="previousDayLastYearOverallConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>The amount of energy consumed on the previous day one year ago interpreted as same day of week same week of year  (see ISO 8601).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="previousDayNetConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>Net consumption for the previous day</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="previousDayOverallConsumption" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>The total consumption for the previous day</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="qualityOfReading" minOccurs="0" maxOccurs="1" type="QualityOfReading">
+						<xs:annotation>
+							<xs:documentation>Indication of the quality of the summary readings</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ratchetDemand" minOccurs="0" maxOccurs="1" type="SummaryMeasurement">
+						<xs:annotation>
+							<xs:documentation>The current ratchet demand value for the ratchet demand period</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ratchetDemandPeriod" minOccurs="0" maxOccurs="1" type="DateTimeInterval">
+						<xs:annotation>
+							<xs:documentation>The period over which the ratchet demand applies</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="statusTimeStamp" minOccurs="1" maxOccurs="1" type="TimeType">
+						<xs:annotation>
+							<xs:documentation>Date/Time status of this UsageSummary</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="HexBinary128">
+		<xs:annotation>
+			<xs:documentation>A 128-bit field encoded as a hex string (32 characters / 16 octets)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:hexBinary">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HexBinary16">
+		<xs:annotation>
+			<xs:documentation>A 16-bit field encoded as a hex string (4 characters / 2 octets)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:hexBinary">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String256">
+		<xs:annotation>
+			<xs:documentation>Character string of max length 256</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String32">
+		<xs:annotation>
+			<xs:documentation>Character string of max length 32</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String64">
+		<xs:annotation>
+			<xs:documentation>Character string of max length 64</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UInt16">
+		<xs:annotation>
+			<xs:documentation>Unsigned integer, max inclusive 65535 (2^16-1), same as xs:unsignedShort</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedShort"/>
+	</xs:simpleType>
+	<xs:simpleType name="UInt32">
+		<xs:annotation>
+			<xs:documentation>Unsigned integer, max inclusive 4294967295 (2^32-1), same as xs:unsignedInt</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedInt"/>
+	</xs:simpleType>
+	<xs:simpleType name="UInt48">
+		<xs:annotation>
+			<xs:documentation>Unsigned integer, max inclusive 281474976710655 (2^48-1), restriction of xs:unsignedLong</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedLong">
+			<xs:maxInclusive value="281474976710655"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UInt8">
+		<xs:annotation>
+			<xs:documentation>Unsigned integer, max inclusive 255 (2^8-1), same as xs:unsignedByte</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte"/>
+	</xs:simpleType>
+	<xs:simpleType name="Int48">
+		<xs:annotation>
+			<xs:documentation>Signed integer, max inclusive 281474976710655 (2^48-1), restriction of xs:long</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:maxInclusive value="281474976710655"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="AccumulationBehaviourType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+1 = BulkQuantity
+3 = Cumulative
+4 = DeltaData
+6 = Indicating
+9 = Summation
+12 = Instantaneous</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CommodityType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+1 = Electricity metered value 
+4 = Air
+7 = NaturalGas
+8 = Propane
+9 = PotableWater
+10 = Steam
+11 = WasteWater
+12 = HeatingFluid
+13 = CoolingFluid</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ConsumptionTierType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+1 = Block Tier 1
+2 = Block Tier 2
+3 = Block Tier 3
+4 = Block Tier 4
+5 = Block Tier 5
+6 = Block Tier 6
+7 = Block Tier 7
+8 = Block Tier 8
+9 = Block Tier 9
+10 = Block Tier 10
+11 = Block Tier 11
+12 = Block Tier 12
+13 = Block Tier 13
+14 = Block Tier 14
+15 = Block Tier 15
+16 = Block Tier 16</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CurrencyCode">
+		<xs:annotation>
+			<xs:documentation>Follows codes defined in ISO 4217. Full list at tiny.cc/4217.
+
+0 - Not Applicable
+36 - Australian Dollar
+124 - Canadian Dollar
+840 - US Dollar
+978 - Euro</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DataQualifierType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+2 = Average
+8 = Maximum
+9 = Minimum
+12 = Normal</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="DateTimeInterval">
+		<xs:annotation>
+			<xs:documentation>Interval of date and time. End is not included because it can be derived from the start and the duration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="duration" minOccurs="1" maxOccurs="1" type="UInt32">
+						<xs:annotation>
+							<xs:documentation>Duration of the interval, in seconds.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="start" minOccurs="1" maxOccurs="1" type="TimeType">
+						<xs:annotation>
+							<xs:documentation>Date and time that this interval started.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlowDirectionType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+1 = Forward
+19 = Reverse</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="KindType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+3 = Currency
+4 = Current
+5 = CurrentAngle
+7 = Date
+8 = Demand
+12 = Energy
+15 = Frequency
+37 = Power
+38 = PowerFactor
+40 = QuantityPower
+54 = Voltage
+55 = VoltageAngle
+64 = DistortionPowerFactor
+155 = VolumetricFlow</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="PhaseCode">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+129 = Phase AN
+128 = Phase A
+132 = Phase AB
+64 = Phase BN
+64 = Phase B
+32 = Phase CN
+32 = Phase C
+224 = Phase ABC
+66 = Phase BC
+40 = Phase CA
+512 = Phase S1
+256 = Phase S2
+768 = Phase S1S2
+513 = Phase S1N
+257 = Phase S2N
+769 = Phase S1S2N</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt16"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PowerOfTenMultiplierType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = None
+1 = deca=x10
+2 = hecto=x100
+-3 = mili=x10-3
+3 = kilo=x1000
+6 = Mega=x106
+-6 = micro=x10-3
+9 = Giga=x109</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:byte"/>
+	</xs:simpleType>
+	<xs:complexType name="QualityOfReading">
+		<xs:annotation>
+			<xs:documentation>List of codes indicating the quality of the reading, using specification:
+
+0 - valid: data that has gone through all required validation checks and either passed them all or has been verified 
+7 - manually edited: Replaced or approved by a human
+8 - estimated using reference day: data value was replaced by a machine computed value based on analysis of historical data using the same type of measurement.
+9 - estimated using linear interpolation: data value was computed using linear interpolation based on the readings before and after it
+10 - questionable: data that has failed one or more checks
+11 - derived: data that has been calculated (using logic or mathematical operations), not necessarily measured directly 
+12 - projected (forecast): data that has been calculated as a projection or forecast of future readings
+13 - mixed: indicates that the quality of this reading has mixed characteristics
+14 - raw: data that has not gone through the validation, editing and estimation process
+15 - normalized for weather: the values have been adjusted to account for weather, in order to compare usage in different climates
+16 - other: specifies that a characteristic applies other than those defined
+17 - validated: data that has been validated and possibly edited and/or estimated in accordance with approved procedures
+18 - verified: data that failed at least one of the required validation checks but was determined to represent actual usage</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceKind">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 - electricity
+1 - gas
+2 - water
+4 - pressure
+5 - heat
+6 - cold
+7 - communication
+8 - time</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TimeAttributeType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+1 = 10-minute
+2 = 15-minute
+4 = 24-hour
+5 = 30-minute
+7 = 60-minute
+11 = Daily
+13 = Monthly
+15 = Present
+16 = Previous
+24 = Weekly
+32 = ForTheSpecifiedPeriod
+79 = Daily30minuteFixedBlock</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="TimeType">
+		<xs:annotation>
+			<xs:documentation>Time is a signed 64-bit value representing the number of seconds since 0 hours, 0 minutes, 0 seconds, on the 1st of January, 1970.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:complexType name="TOUType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = NotApplicable
+1 = TOU A
+2 = TOU B
+3 = TOU C
+4 = TOU D
+5 = TOU E
+6 = TOU F
+7 = TOU G
+8 = TOU H
+9 = TOU I
+10 = TOU J
+11 = TOU K
+12 = TOU L
+13 = TOU M
+14 = TOU N
+15 = TOU O</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="UomType">
+		<xs:annotation>
+			<xs:documentation>Valid values include:
+
+0 = Not Applicable
+5 = A (Current)
+29 = Voltage
+31 = J (Energy joule)
+33 = Hz (Frequency)
+38 = Real power (Watts)
+42 = m3 (Cubic Meter)
+61 = VA (Apparent power)
+63 = VAr (Reactive power)
+65 = Cos? (Power factor)
+67 = V� (Volts squared)
+69 = A� (Amp squared)
+71 = VAh (Apparent energy)
+72 = Real energy (Watt-hours)
+73 = VArh (Reactive energy)
+106 = Ah (Ampere-hours / Available Charge)
+119 = ft3 (Cubic Feet)
+122 = ft3/h (Cubic Feet per Hour)
+125 = m3/h (Cubic Meter per Hour)
+128 = US gl (US Gallons)
+129 = US gl/h (US Gallons per Hour)
+130 = IMP gl (Imperial Gallons)
+131 = IMP gl/h (Imperial Gallons per Hour)
+132 = BTU
+133 = BTU/h
+134 = Liter
+137 = L/h (Liters per Hour)
+140 = PA(gauge)
+155 = PA(absolute)
+169 = Therm</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="UInt8"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="SummaryMeasurement">
+		<xs:annotation>
+			<xs:documentation>An aggregated summary measurement reading.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="powerOfTenMultiplier" minOccurs="0" maxOccurs="1" type="PowerOfTenMultiplierType">
+						<xs:annotation>
+							<xs:documentation>The multiplier part of the unit of measure, e.g. "kilo" (k)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="timeStamp" minOccurs="0" maxOccurs="1" type="TimeType">
+						<xs:annotation>
+							<xs:documentation>The date and time (if needed) of the summary measurement.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uom" minOccurs="0" maxOccurs="1" type="UomType">
+						<xs:annotation>
+							<xs:documentation>The units of the reading, e.g. "Wh"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value" minOccurs="0" maxOccurs="1" type="UInt48">
+						<xs:annotation>
+							<xs:documentation>The value of the summary measurement.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BatchItemInfo">
+		<xs:annotation>
+			<xs:documentation>Includes elements that make it possible to include multiple transactions in a single (batch) request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="name" minOccurs="0" maxOccurs="1" type="HexBinary16">
+						<xs:annotation>
+							<xs:documentation>An identifier for this object that is only unique within the containing collection.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="operation" minOccurs="0" maxOccurs="1" type="UInt8">
+						<xs:annotation>
+							<xs:documentation>Specifies the operation requested of this item. 
+
+0=Create
+1=Read
+2=Update
+3=Delete</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="statusCode" minOccurs="0" maxOccurs="1" type="UInt16">
+						<xs:annotation>
+							<xs:documentation>Indicates the status code of the associated transaction. 
+
+200 - Ok
+201 - Created
+204 - No Content
+301 - Moved Permanently
+302 - Redirect
+304 - Not Modified
+400 - Bad Request
+401 - Unauthorized
+403 - Forbidden
+404 - Not Found
+405 - Method Not Allowed
+410 - Gone
+500 - Internal Server Error</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="statusReason" minOccurs="0" maxOccurs="1" type="String256">
+						<xs:annotation>
+							<xs:documentation>Indicates the reason for the indicated status code.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Object">
+		<xs:annotation>
+			<xs:documentation>Superclass of all object classes to allow extensions.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="extension" minOccurs="0" maxOccurs="unbounded" type="xs:anyType">
+				<xs:annotation>
+					<xs:documentation>Contains an extension.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceStatus">
+		<xs:annotation>
+			<xs:documentation>Contains the current status of the service.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Object">
+				<xs:sequence>
+					<xs:element name="currentStatus" minOccurs="1" maxOccurs="1" type="UInt8">
+						<xs:annotation>
+							<xs:documentation>The current status of the service. 
+
+0 = Unavailable
+1 = Normal, operational</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Subscription">
+		<xs:annotation>
+			<xs:documentation>Defines the parameters of a subscription between Third Party and Data Custodian.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ApplicationInformation" type="ApplicationInformation"/>
+	<xs:element name="Authorization" type="Authorization"/>
+	<xs:element name="IntervalBlock" type="IntervalBlock"/>
+	<xs:element name="IntervalReading" type="IntervalReading"/>
+	<xs:element name="MeterReading" type="MeterReading"/>
+	<xs:element name="ReadingQuality" type="ReadingQuality"/>
+	<xs:element name="ReadingType" type="ReadingType"/>
+	<xs:element name="IdentifiedObject" type="IdentifiedObject"/>
+	<xs:element name="ServiceCategory" type="ServiceCategory"/>
+	<xs:element name="UsagePoint" type="UsagePoint"/>
+	<xs:element name="ElectricPowerQualitySummary" type="ElectricPowerQualitySummary"/>
+	<xs:element name="ElectricPowerUsageSummary" type="ElectricPowerUsageSummary"/>
+	<xs:element name="AccumulationBehaviourType" type="AccumulationBehaviourType"/>
+	<xs:element name="CommodityType" type="CommodityType"/>
+	<xs:element name="ConsumptionTierType" type="ConsumptionTierType"/>
+	<xs:element name="CurrencyCode" type="CurrencyCode"/>
+	<xs:element name="DataQualifierType" type="DataQualifierType"/>
+	<xs:element name="DateTimeInterval" type="DateTimeInterval"/>
+	<xs:element name="FlowDirectionType" type="FlowDirectionType"/>
+	<xs:element name="KindType" type="KindType"/>
+	<xs:element name="PhaseCode" type="PhaseCode"/>
+	<xs:element name="QualityOfReading" type="QualityOfReading"/>
+	<xs:element name="ServiceKind" type="ServiceKind"/>
+	<xs:element name="TimeAttributeType" type="TimeAttributeType"/>
+	<xs:element name="TOUType" type="TOUType"/>
+	<xs:element name="UomType" type="UomType"/>
+	<xs:element name="SummaryMeasurement" type="SummaryMeasurement"/>
+	<xs:element name="BatchItemInfo" type="BatchItemInfo"/>
+	<xs:element name="Object" type="Object"/>
+	<xs:element name="ServiceStatus" type="ServiceStatus"/>
+	<xs:element name="Subscription" type="Subscription"/>
+</xs:schema>

@@ -1,3 +1,4 @@
+//build and configure the app
 require('dotenv').config();
 
 const express = require('express');
