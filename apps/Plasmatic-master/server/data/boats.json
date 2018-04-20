@@ -1,0 +1,74 @@
+[
+{
+    "Id": "1",
+    "BoatName": "The Lebanese Ostrich",
+    "BoatLengthInFeet": "14",
+    "BoatYear": "1987",
+    "BoatCapacityInPeople": "13",
+    "BoatPictureUrl": "images/imageBoat1.png",
+    "IsRented": "No"
+},
+{
+    "Id": "2",
+    "BoatName": "The Zuckergoat",
+    "BoatLengthInFeet": "5.5",
+    "BoatYear": "2001",
+    "BoatCapacityInPeople": "3",
+    "BoatPictureUrl": "images/imageBoat2.png",
+    "IsRented": "No"
+},
+{
+    "Id": "3",
+    "BoatName": "Holy Guacacanole",
+    "BoatLengthInFeet": "20",
+    "BoatYear": "1992",
+    "BoatCapacityInPeople": "6",
+    "BoatPictureUrl": "images/imageBoat3.png",
+    "IsRented": "No"
+},
+{
+    "Id": "4",
+    "BoatName": "Helena Sell",
+    "BoatLengthInFeet": "6.8",
+    "BoatYear": "2000",
+    "BoatCapacityInPeople": "2",
+    "BoatPictureUrl": "images/imageBoat4.png",
+    "IsRented": "No"
+},
+{
+    "Id": "5",
+    "BoatName": "Viking Quest",
+    "BoatLengthInFeet": "34",
+    "BoatYear": "1978",
+    "BoatCapacityInPeople": "10",
+    "BoatPictureUrl": "images/imageBoat5.png",
+    "IsRented": "No"
+},
+{
+    "Id": "6",
+    "BoatName": "Aboat Time",
+    "BoatLengthInFeet": "8",
+    "BoatYear": "2015",
+    "BoatCapacityInPeople": "4",
+    "BoatPictureUrl": "images/imageBoat6.png",
+    "IsRented": "No"
+},
+{
+    "Id": "7",
+    "BoatName": "Ship For Brains",
+    "BoatLengthInFeet": "14",
+    "BoatYear": "2018",
+    "BoatCapacityInPeople": "6",
+    "BoatPictureUrl": "images/imageBoat7.png",
+    "IsRented": "No"
+},
+{
+    "Id": "8",
+    "BoatName": "Boaty McBoat-Face",
+    "BoatLengthInFeet": "55",
+    "BoatYear": "2018",
+    "BoatCapacityInPeople": "22",
+    "BoatPictureUrl": "images/imageBoat8.png",
+    "IsRented": "No"
+}
+]
