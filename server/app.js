@@ -9,10 +9,16 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
+var LocalStrategy = require('passport-local').Strategy; 
+
+//Mlabs
 var mongoose = require('mongoose');
+mongoose.connect(config.database_mlb);
+
 var path = require('path');
 var session = require('express-session');
 var del = require('del');
+
 
 // File upload
 //var multer = require('multer')
@@ -38,8 +44,7 @@ var index = require('./routes/index');
 // var api = require('./routes/api.route');
 
 // Database connection
-mongoose.Promise = bluebird;
-mongoose.connect(config.database);
+//mongoose.Promise = bluebird;
 var db = mongoose.connection;
 
 // Initialize app
@@ -54,6 +59,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
     defaultLayout: 'layout'
 }));
+
 app.set('view engine', 'handlebars');
 
 // BodyParser middleware

@@ -7,7 +7,7 @@ var User = require('../models/user');
 
 var mongojs = require("mongojs");
 var config = require("../config");
-var db = mongojs(config.database, ['users']);
+var db = mongojs(config.database_mlb, ['users']);
 
 // get register route
 router.get('/register', function(req, res) {
