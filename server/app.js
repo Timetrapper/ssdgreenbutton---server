@@ -9,7 +9,7 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
-var LocalStrategy = require('passport-local').Strategy; 
+var LocalStrategy = require('passport-local').Strategy;
 
 //Mlabs
 var mongoose = require('mongoose');
@@ -118,7 +118,7 @@ app.use(function (req, res, next) {
 
 // enable CORS
 app.use('/', routes);
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -137,14 +137,23 @@ function cleanFolder(folderPath) {
     });
 };
 
+
+// File upload storage
 var multer = require('multer');
-var upload = multer({ dest: './public/uploads/' });
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/uploads')
+    }
+});
+
+var upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('xml'), function (req, res, next) {
-  // req.file is the `xml` file
-  // req.body will hold the text fields, if there were any
-  req.flash('success-msg', "Your file has been uploaded.");
-  res.redirect('/');
+    // req.file is the `xml` file
+    // req.body will hold the text fields, if there were any
+    req.flash('success-msg', "Your file has been uploaded.");
+    res.redirect('/');
 });
 
 
@@ -187,6 +196,7 @@ app.post('/upload', upload.single('xml'), function (req, res, next) {
 //         res.json(greenbuttondata);
 //     })
 // });
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/token', tokensApi);
@@ -196,7 +206,7 @@ app.use('/', index);
 // set passport
 app.set('port', config.port);
 
-app.listen(config.port, function() {
+app.listen(config.port, function () {
     console.log("Server started on port " + config.port)
 });
 
