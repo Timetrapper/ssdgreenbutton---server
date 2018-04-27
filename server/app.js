@@ -29,7 +29,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 // Models
-GreenButtonData = require('./models/greenbuttondata');
 
 // Routes
 var routes = require('./routes/');
@@ -157,35 +156,37 @@ app.post('/upload', upload.single('xml'), function (req, res, next) {
 });
 
 
+/*
+// Converts XML to JSON
+var convert = require('xml-js');
+var xml = require('fs').readFileSync('./xml/tor-data.xml', 'utf8');
+var options = {
+    ignoreComment: true,
+    ignoreDoctype: true,
+    alwaysChildren: true,
+    spaces: 2,
+    compact: true
+};
+var result = convert.xml2json(xml, options);
+var jSONData = JSON.parse(result);
+fs.writeFile('tony-energy.json', result, finished);
+*/
 
-// // Converts XML to JSON
-// var convert = require('xml-js');
-// var xml = require('fs').readFileSync('./XML/tony-energy-xml.xml', 'utf8');
-// var options = {
-//     ignoreComment: true,
-//     ignoreDoctype: true,
-//     alwaysChildren: true,
-//     spaces: 2,
-//     compact: true
-// };
-// var result = convert.xml2json(xml, options);
-// var jSONData = JSON.parse(result);
-// fs.writeFile('tony-energy.json', result, finished);
 
-// // Converts XML to JSON with espi removed
-// var xml = require('fs').readFileSync('./XML/tony-energy-xml.xml', 'utf8');
-// const util = require('util');
-// const espiParser = require('espi-parser');
-// const json = espiParser(xml);
+// Converts XML to JSON with espi removed
+var xml = require('fs').readFileSync('./xml/tor-data.xml', 'utf8');
+const util = require('util');
+const json = espiParser(xml);
 
-// // Write JSON to file
-// var jSONData = JSON.stringify(json);
-// fs.writeFile('xml.json', jSONData, finished);
+var jSONData = JSON.stringify(json);
 
-// // Route to created JSON file
-// app.get("/api/xml", function (req, res, next) {
-//     res.json(jSONData);
-// });
+fs.writeFile('tor-energy-quota.json', jSONData, finished);
+
+
+// Route to created JSON file
+app.get("/api/xml", function (req, res, next) {
+    res.json(result);
+});
 
 // // Route to green button data
 // app.get('/api/greenbuttondata', function (req, res) {
@@ -202,6 +203,30 @@ app.use('/users', users);
 app.use('/token', tokensApi);
 //app.use('/files', files);
 app.use('/', index);
+
+
+
+// Test out Saving of jSON to Mongo
+/*
+db.open(function(err, db) {
+    var collection = db.usersenergy("simple_document_insert_collection_no_safe");
+        // Insert a single document
+        collection.insert(data);
+      
+        // Wait for a second before finishing up, to ensure we have written the item to disk
+        setTimeout(function() {
+      
+          // Fetch the document
+          collection.findOne(data, function(err, item) {
+            assert.equal(null, err);
+            assert.equal('data', item.energy);
+            db.close();
+          })
+        }, 100);
+});
+*/
+
+
 
 // set passport
 app.set('port', config.port);

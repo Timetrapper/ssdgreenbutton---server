@@ -1,0 +1,2716 @@
+{
+    "feed": {
+        "id": "urn:uuid:79f97f63-967b-474b-bf10-e3d4b47531e1",
+        "title": "Green Button Usage Feed",
+        "updated": "2018-04-27T00:53:28Z",
+        "link": {
+            "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/RetailCustomer/1/UsagePoint/1",
+            "rel": "self"
+        },
+        "entries": [{
+            "id": "urn:uuid:49b26e67-dd90-49c2-a11d-d89beea5b093",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1",
+                "rel": "self"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading",
+                "rel": "related"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/LocalTimeParameters/1",
+                "rel": "related"
+            }],
+            "title": "Electric meter",
+            "content": {
+                "UsagePoint": {
+                    "ServiceCategory": {
+                        "kind": "0"
+                    },
+                    "ServiceDeliveryPoint": {}
+                }
+            },
+            "published": "2018-04-27T00:53:28Z",
+            "updated": "2018-04-27T00:53:28Z"
+        }, {
+            "id": "urn:uuid:4c559003-ddb5-4322-8934-813d430455ff",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/LocalTimeParameters",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/LocalTimeParameters/1",
+                "rel": "self"
+            }],
+            "title": "DST For North America",
+            "content": {
+                "LocalTimeParameters": {
+                    "dstEndRule": "B40E2000",
+                    "dstOffset": "3600",
+                    "dstStartRule": "360E2000",
+                    "tzOffset": "28800"
+                }
+            },
+            "published": "2018-04-27T00:53:28Z",
+            "updated": "2018-04-27T00:53:28Z"
+        }, {
+            "id": "urn:uuid:2d5185ce-ad00-48e3-9ab9-58da6fa33ffa",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1",
+                "rel": "self"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1/IntervalBlock",
+                "rel": "related"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/ReadingType/1",
+                "rel": "related"
+            }],
+            "title": "Electricity consumption",
+            "content": {
+                "MeterReading": {}
+            },
+            "published": "2018-04-27T00:53:28Z",
+            "updated": "2018-04-27T00:53:28Z"
+        }, {
+            "id": "urn:uuid:453c068a-0530-42af-868b-e01bf7c6b29b",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/ReadingType",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/ReadingType/1",
+                "rel": "self"
+            }],
+            "title": "Net Consumption (kWh)",
+            "content": {
+                "ReadingType": {
+                    "accumulationBehaviour": "4",
+                    "commodity": "1",
+                    "flowDirection": "1",
+                    "intervalLength": "3600",
+                    "kind": "12",
+                    "phase": "0",
+                    "powerOfTenMultiplier": "3",
+                    "uom": "72"
+                }
+            },
+            "published": "2018-04-27T00:53:28Z",
+            "updated": "2018-04-27T00:53:28Z"
+        }, {
+            "id": "urn:uuid:b5710c0c-2f79-4176-82fc-d7027fe66fd2",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1/IntervalBlock",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1/IntervalBlock/1",
+                "rel": "self"
+            }],
+            "title": "Interval Block - 1",
+            "content": {
+                "IntervalBlock": {
+                    "interval": {
+                        "duration": "1468800",
+                        "start": "1521010801"
+                    },
+                    "IntervalReadings": [{
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521010801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521014401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521018001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521021601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521025201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521028801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521032401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521036001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521039601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521043201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521046801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521050401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521054001"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521057601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521061201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521064801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521068401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521072001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521075601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521079201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521082801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521086401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521090001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521093601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521097201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521100801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521104401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521108001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521111601"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521115201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521118801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521122401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521126001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521129601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521133201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521136801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521140401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521144001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521147601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521151201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521154801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521158401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521162001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521165601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521169201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521172801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521176401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521180001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521183601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521187201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521190801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521194401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521198001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521201601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521205201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521208801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521212401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521216001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521219601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521223201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521226801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521230401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521234001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521237601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521241201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521244801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521248401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521252001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521255601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521259201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521262801"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521266401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521270001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521273601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521277201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521280801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521284401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521288001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521291601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521295201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521298801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521302401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521306001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521309601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521313201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521316801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521320401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521324001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521327601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521331201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521334801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521338401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521342001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521345601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521349201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521352801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521356401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521360001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521363601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521367201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521370801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521374401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521378001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521381601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521385201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521388801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521392401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521396001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521399601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521403201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521406801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521410401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521414001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521417601"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521421201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521424801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521428401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521432001"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521435601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521439201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521442801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521446401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521450001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521453601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521457201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521460801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521464401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521468001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521471601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521475201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521478801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521482401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521486001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521489601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521493201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521496801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521500401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521504001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521507601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521511201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521514801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521518401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521522001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521525601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521529201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521532801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521536401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521540001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521543601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521547201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521550801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521554401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521558001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521561601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521565201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521568801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521572401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521576001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521579601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521583201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521586801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521590401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521594001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521597601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521601201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521604801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521608401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521612001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521615601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521619201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521622801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521626401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521630001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521633601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521637201"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521640801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521644401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521648001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521651601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521655201"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521658801"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521662401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521666001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521669601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521673201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521676801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521680401"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521684001"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521687601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521691201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521694801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521698401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521702001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521705601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521709201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521712801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521716401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521720001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521723601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521727201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521730801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521734401"
+                        },
+                        "value": "6"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521738001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521741601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521745201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521748801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521752401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521756001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521759601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521763201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521766801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521770401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521774001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521777601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521781201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521784801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521788401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521792001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521795601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521799201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521802801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521806401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521810001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521813601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521817201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521820801"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521824401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521828001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521831601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521835201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521838801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521842401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521846001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521849601"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521853201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521856801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521860401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521864001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521867601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521871201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521874801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521878401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521882001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521885601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521889201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521892801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521896401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521900001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521903601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521907201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521910801"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521914401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521918001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521921601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521925201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521928801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521932401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521936001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521939601"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521943201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521946801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521950401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521954001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521957601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521961201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521964801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521968401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521972001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521975601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521979201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521982801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521986401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521990001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521993601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1521997201"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522000801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522004401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522008001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522011601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522015201"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522018801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522022401"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522026001"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522029601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522033201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522036801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522040401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522044001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522047601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522051201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522054801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522058401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522062001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522065601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522069201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522072801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522076401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522080001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522083601"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522087201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522090801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522094401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522098001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522101601"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522105201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522108801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522112401"
+                        },
+                        "value": "6"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522116001"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522119601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522123201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522126801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522130401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522134001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522137601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522141201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522144801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522148401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522152001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522155601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522159201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522162801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522166401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522170001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522173601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522177201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522180801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522184401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522188001"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522191601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522195201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522198801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522202401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522206001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522209601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522213201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522216801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522220401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522224001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522227601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522231201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522234801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522238401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522242001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522245601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522249201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522252801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522256401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522260001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522263601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522267201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522270801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522274401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522278001"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522281601"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522285201"
+                        },
+                        "value": "7"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522288801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522292401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522296001"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522299601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522303201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522306801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522310401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522314001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522317601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522321201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522324801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522328401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522332001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522335601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522339201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522342801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522346401"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522350001"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522353601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522357201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522360801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522364401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522368001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522371601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522375201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522378801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522382401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522386001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522389601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522393201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522396801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522400401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522404001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522407601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522411201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522414801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522418401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522422001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522425601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522429201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522432801"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522436401"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522440001"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522443601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522447201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522450801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522454401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522458001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522461601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522465201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522468801"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522472401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522476001"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522479601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522483201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522486801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522490401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522494001"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522497601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522501201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522504801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522508401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522512001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522515601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522519201"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522522801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522526401"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522530001"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522533601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522537201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522540801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522544401"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522548001"
+                        },
+                        "value": "4"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522551601"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522555201"
+                        },
+                        "value": "5"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522558801"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1522562401"
+                        },
+                        "value": "2"
+                    }]
+                }
+            },
+            "published": "2018-04-27T00:53:28Z",
+            "updated": "2018-04-27T00:53:28Z"
+        }]
+    }
+}
