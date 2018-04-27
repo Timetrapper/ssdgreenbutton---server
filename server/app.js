@@ -10,19 +10,13 @@ var flash = require('connect-flash');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
-
-//Mlabs
-var mongoose = require('mongoose');
-mongoose.connect(config.database_mlb);
-
 var path = require('path');
 var session = require('express-session');
 var del = require('del');
 
-
-// File upload
-//var multer = require('multer')
-//ar upload = multer({ dest: 'uploads/' })
+//Mlabs
+var mongoose = require('mongoose');
+mongoose.connect(config.database_mlb);
 
 // Security
 var passport = require('passport');
@@ -30,12 +24,12 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // Models
 
+
 // Routes
 var routes = require('./routes/');
 var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
-//var files = require('./routes/files');
 //var files  = require('./routes/files')();
 //app.use('/files', parseUploads, imageRoutes);
 
@@ -47,11 +41,10 @@ var index = require('./routes/index');
 var db = mongoose.connection;
 
 // Initialize app
-var app = express(); //This IS an express app
+var app = express();
 
 // Parsers
 app.use(cookieParser());
-app.use(bodyParser.json()); // let's make JSON work too!
 
 // View Engine - Express Handlebars
 app.set('views', path.join(__dirname, 'views'));
@@ -136,7 +129,6 @@ function cleanFolder(folderPath) {
     });
 };
 
-
 // File upload storage
 var multer = require('multer');
 
@@ -146,15 +138,16 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({ storage: storage });
+var upload = multer({
+    storage: storage
+});
 
 app.post('/upload', upload.single('xml'), function (req, res, next) {
-    // req.file is the `xml` file
+    // req.file is the 'xml' file
     // req.body will hold the text fields, if there were any
     req.flash('success-msg', "Your file has been uploaded.");
     res.redirect('/');
 });
-
 
 /*
 // Converts XML to JSON
@@ -167,12 +160,13 @@ var options = {
     spaces: 2,
     compact: true
 };
+
 var result = convert.xml2json(xml, options);
 var jSONData = JSON.parse(result);
 fs.writeFile('tony-energy.json', result, finished);
 */
 
-
+/*
 // Converts XML to JSON with espi removed
 var xml = require('fs').readFileSync('./xml/tor-data.xml', 'utf8');
 const util = require('util');
@@ -181,22 +175,24 @@ const json = espiParser(xml);
 var jSONData = JSON.stringify(json);
 
 fs.writeFile('tor-energy-quota.json', jSONData, finished);
-
+*/
 
 // Route to created JSON file
 app.get("/api/xml", function (req, res, next) {
     res.json(result);
 });
 
-// // Route to green button data
-// app.get('/api/greenbuttondata', function (req, res) {
-//     GreenButtonData.getGreenButtonData(function (err, greenbuttondata) {
-//         if (err) {
-//             throw err;
-//         }
-//         res.json(greenbuttondata);
-//     })
-// });
+/*
+// Route to green button data
+app.get('/api/greenbuttondata', function (req, res) {
+    GreenButtonData.getGreenButtonData(function (err, greenbuttondata) {
+        if (err) {
+            throw err;
+        }
+        res.json(greenbuttondata);
+    })
+});
+*/
 
 app.use('/', routes);
 app.use('/users', users);
@@ -204,29 +200,25 @@ app.use('/token', tokensApi);
 //app.use('/files', files);
 app.use('/', index);
 
-
-
-// Test out Saving of jSON to Mongo
 /*
+// Test out Saving of jSON to Mongo
 db.open(function(err, db) {
     var collection = db.usersenergy("simple_document_insert_collection_no_safe");
-        // Insert a single document
-        collection.insert(data);
-      
-        // Wait for a second before finishing up, to ensure we have written the item to disk
-        setTimeout(function() {
-      
-          // Fetch the document
-          collection.findOne(data, function(err, item) {
-            assert.equal(null, err);
-            assert.equal('data', item.energy);
-            db.close();
-          })
-        }, 100);
+    // Insert a single document
+    collection.insert(data);
+    
+    // Wait for a second before finishing up, to ensure we have written the item to disk
+    setTimeout(function() {
+    
+        // Fetch the document
+        collection.findOne(data, function(err, item) {
+        assert.equal(null, err);
+        assert.equal('data', item.energy);
+        db.close();
+        })
+    }, 100);
 });
 */
-
-
 
 // set passport
 app.set('port', config.port);
