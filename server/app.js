@@ -18,7 +18,21 @@ mongoose.connect(config.database_mlb);
 var path = require('path');
 var session = require('express-session');
 var del = require('del');
+var data = require('./tor-energy-quota.json');
 
+
+//Upload to Mongoose
+var post_schema = mongoose.Schema({data: JSON});
+var post_model = mongoose.model('greenbuttondata', post_schema);
+
+var newData = new post_model({data: data});
+
+newData.save(function(err) {
+    if(err) {
+        throw err;
+    }
+    console.log('INSERTED');
+});
 
 // File upload
 //var multer = require('multer')

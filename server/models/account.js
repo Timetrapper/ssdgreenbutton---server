@@ -4,6 +4,8 @@ var mongoose = require("mongoose");
 mongoose.connect(config.database_mlb);
 var db = mongoose.connection;
 
+var data = require('../tor-energy-quota.json');
+
 //var IntervalReading = require("../models/intervalReading");
 
 var schema = mongoose.Schema({
@@ -79,40 +81,3 @@ var Account = db.model('Account', schema);
 
 module.exports = Account; 
 
-/*
-module.exports.createUser = function(newUser, callback) {
-  bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(newUser.password, salt, function(err, hash) {
-          newUser.password = hash;
-          newUser.creation_date = Date.now();
-          newUser.role = "member";
-          newUser.save(callback);
-      });
-  });
-}
-*/
-module.exports.getAccountByInterval = function(start, callback) {
-  Account.findOne({start: start}, callback);
-}
-
-module.exports.getAccountByValue = function(value, callback) {
-  User.findById(value, callback); 
-}
-
-module.exports.comparePassword = function(candidatePassword, hash, callback) {
-  bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-      if (err) throw err;
-      callback(null, isMatch);
-  });
-}
-
-
-
-var accountTest = new Schema({
-        // TODO: TEST INSERT TO MONGO
-    })
-
-
-   accountTest.save((err, cust) => {
-       if(err) return console.error(err);
-});
