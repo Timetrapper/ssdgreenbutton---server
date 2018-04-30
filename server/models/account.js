@@ -2,9 +2,6 @@ var mongoose = require("mongoose");
 var IntervalReading = require("./intervalReading");
 
 var AccountSchema = new mongoose.Schema({
-    _id: {
-        $oid: String
-    },
     feed: {
         id: String,
         title: String,
