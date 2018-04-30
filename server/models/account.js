@@ -44,12 +44,12 @@ var AccountSchema = new mongoose.Schema({
                     uom: Number
                 },
                 IntervalBlock: {
-                    _id : false, 
                     interval: {
                         duration: Number,
                         start: Number
                     },
                     IntervalReadings: [{
+                        _id : false, 
                         timePeriod: {
                             duration: {
                                 type: Number
