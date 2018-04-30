@@ -8,6 +8,7 @@ var express = require("express");
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var fs = require('fs');
+var moment = require('moment'); //npm install moment
 var http = require("http");
 var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
