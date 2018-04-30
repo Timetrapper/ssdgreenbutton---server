@@ -11,8 +11,10 @@ var AccountSchema = new mongoose.Schema({
             rel: String
         },
         entries: [{
+            _id : false,
             id: String,
             links: [{
+                _id : false, 
                 href: String,
                 rel: String
             }],
@@ -42,6 +44,7 @@ var AccountSchema = new mongoose.Schema({
                     uom: Number
                 },
                 IntervalBlock: {
+                    _id : false, 
                     interval: {
                         duration: Number,
                         start: Number
