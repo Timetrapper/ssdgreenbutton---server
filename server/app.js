@@ -15,11 +15,80 @@ var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var session = require('express-session');
 var del = require('del');
+var mongoose = require('mongoose');
 
 var data = require('./tor-energy-quota.json');
 
+var AccountSchema = new mongoose.Schema({
+    feed: {
+        id: String,
+        title: String,
+        updated: Date,
+        link: {
+            href: String,
+            rel: String
+        },
+        entries: [{
+            id: String,
+            links: [{
+                href: String,
+                rel: String
+            }],
+            title: String,
+            content: {
+                UsagePoint: {
+                    ServiceCategory: {
+                        kind: Number
+                    },
+                    ServiceDeliveryPoint: Object
+                },
+                LocalTimeParameters: {
+                    dstEndRule: String,
+                    dstOffset: Number,
+                    dstStartRule: String,
+                    tzOffset: Number
+                },
+                MeterReading: Object,
+                ReadingType: {
+                    accumulationBehaviour: Number,
+                    commodity: Number,
+                    flowDirection: Number,
+                    intervalLength: Number,
+                    kind: Number,
+                    phase: Number,
+                    powerOfTenMultiplier: Number,
+                    uom: Number
+                },
+                IntervalBlock: {
+                    interval: {
+                        duration: Number,
+                        start: Number
+                    },
+                    IntervalReadings: [{
+                        timePeriod: {
+                            duration: {
+                                type: Number
+                            },
+                            start: {
+                                type: Number
+                            }
+                        },
+                        cost: {
+                            type: Number
+                        },
+                        value: {
+                            type: Number
+                        }
+                    }]
+                }
+            },
+            published: Date,
+            updated: Date
+        }]
+    }
+});
+
 // Mlabs
-var mongoose = require('mongoose');
 mongoose.connect(config.database_mlb).then(function(){
     console.log("successfully connected to db");
     console.log("database name: " + mongoose.connection.db.databaseName);
@@ -29,17 +98,24 @@ mongoose.connect(config.database_mlb).then(function(){
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
-//Upload to Mongoose
-var post_schema = mongoose.Schema({data: JSON});
-var post_model = mongoose.model('greenbuttondata', post_schema);
+var Account = require('./models/account');
 
-var newData = new post_model({data: data});
+//Upload to Mongoose
+//var post_schema = Account.schema;
+//var post_schema = mongoose.Schema({data: JSON});
+//var post_model = mongoose.model('greenbuttondata', post_schema);
+var post_model = Account;
+var newData = new post_model(data);
 
 newData.save(function(err) {
+    console.log(newData);
     if(err) {
         throw err;
     }
-    console.log('INSERTED');
+
+    else {
+        console.log('Inserted');
+    }
 });
 
 // Security

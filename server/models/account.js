@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var IntervalReading = require("./intervalReading");
+//var IntervalReading = require("./intervalReading");
 
 var AccountSchema = new mongoose.Schema({
     feed: {
@@ -11,8 +11,10 @@ var AccountSchema = new mongoose.Schema({
             rel: String
         },
         entries: [{
+            _id : false,
             id: String,
             links: [{
+                _id : false, 
                 href: String,
                 rel: String
             }],
@@ -47,6 +49,7 @@ var AccountSchema = new mongoose.Schema({
                         start: Number
                     },
                     IntervalReadings: [{
+                        _id : false, 
                         timePeriod: {
                             duration: {
                                 type: Number
@@ -70,7 +73,7 @@ var AccountSchema = new mongoose.Schema({
     }
 });
 
-var Account = module.exports = mongoose.model('Account', AccountSchema, 'data'); 
+var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
 
 module.exports.getUser = function(callback) { 
     console.log('Im in getUser');
