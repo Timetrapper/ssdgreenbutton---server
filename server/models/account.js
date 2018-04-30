@@ -1,14 +1,10 @@
-//import { mongo } from "mongoose";
-var config = require('../config');
 var mongoose = require("mongoose");
-mongoose.connect(config.database_mlb);
-var db = mongoose.connection;
+var IntervalReading = require("./intervalReading");
 
-var data = require('../tor-energy-quota.json');
-
-//var IntervalReading = require("../models/intervalReading");
-
-var schema = mongoose.Schema({
+var AccountSchema = new mongoose.Schema({
+    _id: {
+        $oid: String
+    },
     feed: {
         id: String,
         title: String,
@@ -59,7 +55,7 @@ var schema = mongoose.Schema({
                                 type: Number
                             },
                             start: {
-                                type: Date
+                                type: Number
                             }
                         },
                         cost: {
@@ -77,7 +73,24 @@ var schema = mongoose.Schema({
     }
 });
 
-var Account = db.model('Account', schema);
+var Account = module.exports = mongoose.model('Account', AccountSchema, 'data'); 
 
-module.exports = Account; 
+module.exports.getUser = function(callback) { 
+    console.log('Im in getUser');
+    Account.find({ "feed.id": "2"});
+    console.log('Done');
+};
 
+module.exports.getAccountHourlyUsage = function(callback) { 
+    Account.aggregate([
+        {$unwind:"$feed"},
+        {$match: { "feed.id": "2"}},
+        {$unwind:"$feed.entries"},
+        {$match: { "feed.entries.title": "Interval Block - 1"}},
+        {$unwind:"$feed.entries.content"},
+        {$unwind:"$feed.entries.content.IntervalBlock"},
+        {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},
+        {$match: { "feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start": {$gte: "1493175601", $lt:"1493190001"}}},
+        {$project: { Intervals: "$feed.entries.content.IntervalBlock.IntervalReadings" }}
+    ]);
+};

@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 var bluebird = require('bluebird');
-var config = require('./config/');
+var config = require('./config');
 var cookieParser = require('cookie-parser');
 const espiParser = require('espi-parser');
 var exphbs = require('express-handlebars');
@@ -8,6 +8,7 @@ var express = require("express");
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var fs = require('fs');
+var http = require("http");
 var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
@@ -17,8 +18,14 @@ var data = require('./tor-energy-quota.json');
 
 // Mlabs
 var mongoose = require('mongoose');
-mongoose.connect(config.database_mlb);
+mongoose.connect(config.database_mlb).then(function(){
+    console.log("successfully connected to db");
+    console.log("db name: " + mongoose.connection.db.databaseName);
+}, function(){
+    console.log("faild to connected to db");
+}); 
 var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 //Upload to Mongoose
 var post_schema = mongoose.Schema({data: JSON});
@@ -44,6 +51,7 @@ var routes = require('./routes/');
 var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
+var daily = require('./routes/api/daily');
 //var files  = require('./routes/files')();
 //app.use('/files', parseUploads, imageRoutes);
 
@@ -208,6 +216,7 @@ app.get('/api/greenbuttondata', function (req, res) {
 */
 
 app.use('/', routes);
+app.use("/", daily);
 app.use('/users', users);
 app.use('/token', tokensApi);
 //app.use('/files', files);

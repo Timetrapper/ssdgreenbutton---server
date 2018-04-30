@@ -1,0 +1,520 @@
+{
+    "feed": {
+        "id": "10",
+        "title": "Green Button Usage Feed",
+        "updated": "2018-04-24T03:55:38Z",
+        "link": {
+            "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/RetailCustomer/1/UsagePoint/1",
+            "rel": "self"
+        },
+        "entries": [{
+            "id": "urn:uuid:b829c300-d8d0-4f93-8648-3a6ba5661727",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1",
+                "rel": "self"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading",
+                "rel": "related"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/LocalTimeParameters/1",
+                "rel": "related"
+            }],
+            "title": "Electric meter",
+            "content": {
+                "UsagePoint": {
+                    "ServiceCategory": {
+                        "kind": "0"
+                    },
+                    "ServiceDeliveryPoint": {}
+                }
+            },
+            "published": "2018-04-24T03:55:38Z",
+            "updated": "2018-04-24T03:55:38Z"
+        }, {
+            "id": "urn:uuid:c7201e20-8ac3-4e2d-9df8-7a719725b846",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/LocalTimeParameters",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/LocalTimeParameters/1",
+                "rel": "self"
+            }],
+            "title": "DST For North America",
+            "content": {
+                "LocalTimeParameters": {
+                    "dstEndRule": "B40E2000",
+                    "dstOffset": "3600",
+                    "dstStartRule": "360E2000",
+                    "tzOffset": "28800"
+                }
+            },
+            "published": "2018-04-24T03:55:38Z",
+            "updated": "2018-04-24T03:55:38Z"
+        }, {
+            "id": "urn:uuid:bd68fc6f-1440-4a44-a795-5a595f190829",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1",
+                "rel": "self"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1/IntervalBlock",
+                "rel": "related"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/ReadingType/1",
+                "rel": "related"
+            }],
+            "title": "Electricity consumption",
+            "content": {
+                "MeterReading": {}
+            },
+            "published": "2018-04-24T03:55:38Z",
+            "updated": "2018-04-24T03:55:38Z"
+        }, {
+            "id": "urn:uuid:f323316a-6381-422e-b3fc-39d9b2009780",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/ReadingType",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/ReadingType/1",
+                "rel": "self"
+            }],
+            "title": "Net Consumption (kWh)",
+            "content": {
+                "ReadingType": {
+                    "accumulationBehaviour": "4",
+                    "commodity": "1",
+                    "flowDirection": "1",
+                    "intervalLength": "3600",
+                    "kind": "12",
+                    "phase": "0",
+                    "powerOfTenMultiplier": "3",
+                    "uom": "72"
+                }
+            },
+            "published": "2018-04-24T03:55:38Z",
+            "updated": "2018-04-24T03:55:38Z"
+        }, {
+            "id": "urn:uuid:839cd818-157f-43a6-9c72-3c2564630e08",
+            "links": [{
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1/IntervalBlock",
+                "rel": "up"
+            }, {
+                "href": "https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading/1/IntervalBlock/1",
+                "rel": "self"
+            }],
+            "title": "Interval Block - 1",
+            "content": {
+                "IntervalBlock": {
+                    "interval": {
+                        "duration": "31536000",
+                        "start": "1492930801"
+                    },
+                    "IntervalReadings": [{
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495033201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495036801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495040401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495044001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495047601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495051201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495054801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495058401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495062001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495065601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495069201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495072801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495076401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495080001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495083601"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495087201"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495090801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495094401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495098001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495101601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495105201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495108801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495112401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495116001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495119601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495123201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495126801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495130401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495134001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495137601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495141201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495144801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495148401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495152001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495155601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495159201"
+                        },
+                        "value": "2"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495162801"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495166401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495170001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495173601"
+                        },
+                        "value": "3"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495177201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495180801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495184401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495188001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495191601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495195201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495198801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495202401"
+                        },
+                        "value": "1"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495206001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495209601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495213201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495216801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495220401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495224001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495227601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495231201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495234801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495238401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495242001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495245601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495249201"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495252801"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495256401"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495260001"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495263601"
+                        },
+                        "value": "0"
+                    }, {
+                        "timePeriod": {
+                            "duration": "3600",
+                            "start": "1495267201"
+                        },
+                        "value": "0"
+                    }]
+                }
+            },
+            "published": "2018-04-24T03:55:38Z",
+            "updated": "2018-04-24T03:55:38Z"
+        }]
+    }
+}
