@@ -15,8 +15,9 @@ var session = require('express-session');
 var del = require('del');
 var data = require('./tor-energy-quota.json');
 
-<<<<<<< HEAD
-
+//Mlabs
+var mongoose = require('mongoose');
+mongoose.connect(config.database_mlb);
 //Upload to Mongoose
 var post_schema = mongoose.Schema({data: JSON});
 var post_model = mongoose.model('greenbuttondata', post_schema);
@@ -33,11 +34,6 @@ newData.save(function(err) {
 // File upload
 //var multer = require('multer')
 //ar upload = multer({ dest: 'uploads/' })
-=======
-//Mlabs
-var mongoose = require('mongoose');
-mongoose.connect(config.database_mlb);
->>>>>>> edd6e680eceecbc99d49b74edecf47f0bd9b96d2
 
 // Security
 var passport = require('passport');
