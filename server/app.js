@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser');
 var bluebird = require('bluebird');
-var config = require('./config/');
+var config = require('./config');
 var cookieParser = require('cookie-parser');
 const espiParser = require('espi-parser');
 var exphbs = require('express-handlebars');
@@ -8,32 +8,130 @@ var express = require("express");
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var fs = require('fs');
+var moment = require('moment'); //npm install moment
+var http = require("http");
 var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var session = require('express-session');
 var del = require('del');
+var mongoose = require('mongoose');
+
 var data = require('./tor-energy-quota.json');
 
+<<<<<<< HEAD
 //Mlabs
 var mongoose = require('mongoose');
 mongoose.connect(config.database_mlb);
 //Upload to Mongoose
 var post_schema = mongoose.Schema({data: JSON});
 var post_model = mongoose.model('greenbuttondata', post_schema);
+=======
+var AccountSchema = new mongoose.Schema({
+    feed: {
+        id: String,
+        title: String,
+        updated: Date,
+        link: {
+            href: String,
+            rel: String
+        },
+        entries: [{
+            id: String,
+            links: [{
+                href: String,
+                rel: String
+            }],
+            title: String,
+            content: {
+                UsagePoint: {
+                    ServiceCategory: {
+                        kind: Number
+                    },
+                    ServiceDeliveryPoint: Object
+                },
+                LocalTimeParameters: {
+                    dstEndRule: String,
+                    dstOffset: Number,
+                    dstStartRule: String,
+                    tzOffset: Number
+                },
+                MeterReading: Object,
+                ReadingType: {
+                    accumulationBehaviour: Number,
+                    commodity: Number,
+                    flowDirection: Number,
+                    intervalLength: Number,
+                    kind: Number,
+                    phase: Number,
+                    powerOfTenMultiplier: Number,
+                    uom: Number
+                },
+                IntervalBlock: {
+                    interval: {
+                        duration: Number,
+                        start: Number
+                    },
+                    IntervalReadings: [{
+                        timePeriod: {
+                            duration: {
+                                type: Number
+                            },
+                            start: {
+                                type: Number
+                            }
+                        },
+                        cost: {
+                            type: Number
+                        },
+                        value: {
+                            type: Number
+                        }
+                    }]
+                }
+            },
+            published: Date,
+            updated: Date
+        }]
+    }
+});
 
-var newData = new post_model({data: data});
+// Mlabs
+mongoose.connect(config.database_mlb).then(function(){
+    console.log("successfully connected to db");
+    console.log("database name: " + mongoose.connection.db.databaseName);
+}, function(){
+    console.log("failed to connected to db");
+}); 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+
+var Account = require('./models/account');
+>>>>>>> be1f2ea8c036e8dc88840da162661d5b930a6c78
+
+//Upload to Mongoose
+//var post_schema = Account.schema;
+//var post_schema = mongoose.Schema({data: JSON});
+//var post_model = mongoose.model('greenbuttondata', post_schema);
+var post_model = Account;
+var newData = new post_model(data);
 
 newData.save(function(err) {
+    console.log(newData);
     if(err) {
         throw err;
     }
-    console.log('INSERTED');
-});
 
+<<<<<<< HEAD
 // File upload
 //var multer = require('multer')
 //ar upload = multer({ dest: 'uploads/' })
+=======
+    else {
+        console.log('Inserted');
+    }
+});
+>>>>>>> be1f2ea8c036e8dc88840da162661d5b930a6c78
 
 // Security
 var passport = require('passport');
@@ -41,12 +139,12 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // Models
 
-
 // Routes
 var routes = require('./routes/');
 var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
+var daily = require('./routes/api/daily');
 //var files  = require('./routes/files')();
 //app.use('/files', parseUploads, imageRoutes);
 
@@ -55,7 +153,6 @@ var index = require('./routes/index');
 
 // Database connection
 //mongoose.Promise = bluebird;
-var db = mongoose.connection;
 
 // Initialize app
 var app = express();
@@ -212,6 +309,7 @@ app.get('/api/greenbuttondata', function (req, res) {
 */
 
 app.use('/', routes);
+app.use("/", daily);
 app.use('/users', users);
 app.use('/token', tokensApi);
 //app.use('/files', files);
