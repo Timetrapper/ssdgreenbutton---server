@@ -3,6 +3,7 @@ var bluebird = require('bluebird');
 var config = require('./config');
 var cookieParser = require('cookie-parser');
 const espiParser = require('espi-parser');
+const util = require('util');
 var exphbs = require('express-handlebars');
 var express = require("express");
 var expressValidator = require('express-validator');
@@ -17,84 +18,15 @@ var session = require('express-session');
 var del = require('del');
 var mongoose = require('mongoose');
 
-var data = require('./tor-energy-quota.json');
 
-<<<<<<< HEAD
 //Mlabs
 var mongoose = require('mongoose');
 mongoose.connect(config.database_mlb);
+var Account = require('./models/account');
 //Upload to Mongoose
-var post_schema = mongoose.Schema({data: JSON});
-var post_model = mongoose.model('greenbuttondata', post_schema);
-=======
-var AccountSchema = new mongoose.Schema({
-    feed: {
-        id: String,
-        title: String,
-        updated: Date,
-        link: {
-            href: String,
-            rel: String
-        },
-        entries: [{
-            id: String,
-            links: [{
-                href: String,
-                rel: String
-            }],
-            title: String,
-            content: {
-                UsagePoint: {
-                    ServiceCategory: {
-                        kind: Number
-                    },
-                    ServiceDeliveryPoint: Object
-                },
-                LocalTimeParameters: {
-                    dstEndRule: String,
-                    dstOffset: Number,
-                    dstStartRule: String,
-                    tzOffset: Number
-                },
-                MeterReading: Object,
-                ReadingType: {
-                    accumulationBehaviour: Number,
-                    commodity: Number,
-                    flowDirection: Number,
-                    intervalLength: Number,
-                    kind: Number,
-                    phase: Number,
-                    powerOfTenMultiplier: Number,
-                    uom: Number
-                },
-                IntervalBlock: {
-                    interval: {
-                        duration: Number,
-                        start: Number
-                    },
-                    IntervalReadings: [{
-                        timePeriod: {
-                            duration: {
-                                type: Number
-                            },
-                            start: {
-                                type: Number
-                            }
-                        },
-                        cost: {
-                            type: Number
-                        },
-                        value: {
-                            type: Number
-                        }
-                    }]
-                }
-            },
-            published: Date,
-            updated: Date
-        }]
-    }
-});
+//var post_schema = mongoose.Schema({data: JSON});
+//var post_model = mongoose.model('greenbuttondata', post_schema);
+
 
 // Mlabs
 mongoose.connect(config.database_mlb).then(function(){
@@ -106,32 +38,6 @@ mongoose.connect(config.database_mlb).then(function(){
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
-var Account = require('./models/account');
->>>>>>> be1f2ea8c036e8dc88840da162661d5b930a6c78
-
-//Upload to Mongoose
-//var post_schema = Account.schema;
-//var post_schema = mongoose.Schema({data: JSON});
-//var post_model = mongoose.model('greenbuttondata', post_schema);
-var post_model = Account;
-var newData = new post_model(data);
-
-newData.save(function(err) {
-    console.log(newData);
-    if(err) {
-        throw err;
-    }
-
-<<<<<<< HEAD
-// File upload
-//var multer = require('multer')
-//ar upload = multer({ dest: 'uploads/' })
-=======
-    else {
-        console.log('Inserted');
-    }
-});
->>>>>>> be1f2ea8c036e8dc88840da162661d5b930a6c78
 
 // Security
 var passport = require('passport');
@@ -247,49 +153,61 @@ function cleanFolder(folderPath) {
 var multer = require('multer');
 
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './public/uploads')
+    destination: (req, file, cb) => {
+      cb(null, 'public/xml/uploads')
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now())
     }
 });
 
-var upload = multer({
-    storage: storage
+var upload = multer({storage: storage });
+
+app.post('/upload', upload.single('xml'), (req, res, next) => {
+    req.flash('success-msg', "Your XML is Uploaded");
+    console.log(req.file.filename);
+    convertToJSON(req.file.filename, () => {
+        res.json({'message': 'File Converted To jSON'});
+    })
+    storeInMongo(req.file.filename, () => {
+        res.json({'message': 'File Stored In Mongo'});
+    })
+
 });
 
-app.post('/upload', upload.single('xml'), function (req, res, next) {
-    // req.file is the 'xml' file
-    // req.body will hold the text fields, if there were any
-    req.flash('success-msg', "Your file has been uploaded.");
-    res.redirect('/');
-});
 
-/*
-// Converts XML to JSON
-var convert = require('xml-js');
-var xml = require('fs').readFileSync('./xml/tor-data.xml', 'utf8');
-var options = {
-    ignoreComment: true,
-    ignoreDoctype: true,
-    alwaysChildren: true,
-    spaces: 2,
-    compact: true
-};
+var storeInMongo = function(req) {
 
-var result = convert.xml2json(xml, options);
-var jSONData = JSON.parse(result);
-fs.writeFile('tony-energy.json', result, finished);
-*/
+    console.log('WHY:' + req);
+    //const toMongo = fs.readFileSync('./json/' + req + '.json', 'utf8');
+    const toMongo = require('./json/' + req + '.json');
+    var post_model = Account;
+    var newData = new post_model(toMongo);
 
-/*
-// Converts XML to JSON with espi removed
-var xml = require('fs').readFileSync('./xml/tor-data.xml', 'utf8');
-const util = require('util');
-const json = espiParser(xml);
+    newData.save(function(err) {
+        console.log(newData);
+        if(err) {
+            throw err;
+        }
+        else {
+            console.log('Inserted');
+        }
+    });
+}
 
-var jSONData = JSON.stringify(json);
+// Convert XML to JSON and Write to File With Unique Identifer
+var convertToJSON = function(req) {
+    // read xml with identifer
+    const data = fs.readFileSync('./public/xml/uploads/' + req, 'utf8');
+    // Convert XML to json
+    const json = espiParser(data);
+    // Stringify for Writing
+    var jsonstring = JSON.stringify(json);
 
-fs.writeFile('tor-energy-quota.json', jSONData, finished);
-*/
+    fs.writeFileSync('./json/' + req +'.json', jsonstring, finished);
+}
+
+
 
 // Route to created JSON file
 app.get("/api/xml", function (req, res, next) {
