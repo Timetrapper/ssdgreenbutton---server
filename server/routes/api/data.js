@@ -9,6 +9,16 @@ var moment = require('moment');
 var Account = require("../../models/account");
 //var IntervalReading = require("../../models/intervalReading");
 
+router.get("/:id", passport.authenticate('jwt', {session: false}), function(req, res){
+    Account.getAccountIntervalEntry(req.params.id, function(err, data) {
+        if (err)
+            res.send(err);
+        console.log("this is data: "+ JSON.stringify(data));
+        res.json(data);
+    });
+});
+
+/* 
 router.get("/hourly/:id", function(req, res){
     console.log("in the function");
     console.log("id: "+ req.params.id);
@@ -75,6 +85,6 @@ router.get("/user", function(req, res){
         res.json(data);
     });
 });
-
+ */
 
 module.exports = router;

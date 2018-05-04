@@ -50,7 +50,7 @@ var routes = require('./routes/');
 var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
-var daily = require('./routes/api/daily');
+var dataApi = require('./routes/api/data');
 //var files  = require('./routes/files')();
 //app.use('/files', parseUploads, imageRoutes);
 
@@ -227,7 +227,7 @@ app.get('/api/greenbuttondata', function (req, res) {
 */
 
 app.use('/', routes);
-app.use("/", daily);
+app.use("/data", dataApi);
 app.use('/users', users);
 app.use('/token', tokensApi);
 //app.use('/files', files);
