@@ -3,7 +3,10 @@ var mongoose = require("mongoose");
 
 var AccountSchema = new mongoose.Schema({
     feed: {
-        id: String,
+        id: {
+            type: String, 
+            index: {unique: true}
+        },
         title: String,
         updated: Date,
         link: {
@@ -75,12 +78,6 @@ var AccountSchema = new mongoose.Schema({
 
 var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
 
-module.exports.getUser = function(callback) { 
-    console.log('Im in getUser');
-    Account.find({ "feed.id": "2"});
-    console.log('Done');
-};
-
 module.exports.getAccountHourlyUsage = function(id, callback) { 
     Account.aggregate([
         {$unwind: "$feed"},
@@ -133,3 +130,95 @@ module.exports.getAccountAggregatedUsage = function(begin, end, callback){
         callback(null, data);
     });
 }
+
+module.exports.getAccountIntervalEntry = function(id, callback) { 
+    Account.aggregate([
+        {$unwind: "$feed"},
+        {$match: { "feed.id": id}}, 
+        {$unwind:"$feed.entries"},
+        {$match: { "feed.entries.title": "Interval Block - 1"}},
+        {$project: { entry: "$feed.entries" }}
+    ], function(err, data){
+        if (err)
+            throw err
+            console.log(data);
+        callback(null, data);
+    });
+};
+
+module.exports.saveInDb = function(newJSON, callback) {
+    Account.findOne({'feed.id': newJSON.feed.id}, function(err, document){
+        if (err)
+            throw err
+        if (document == null){
+            //save json directly to db
+            newJSON.save(callback);
+        } else {
+            //update the document in db
+            var newIntervals;
+            for(var i=0; i<newJSON.feed.entries.length; i++){
+                    if( newJSON.feed.entries[i].title == "Interval Block - 1") {
+                            newIntervals = newJSON.feed.entries[i].content.IntervalBlock.IntervalReadings;                        
+                    }
+            }
+            //var newIntervals = newJSON.feed.entries.content.IntervalBlock.IntervalReadings;
+            Account.aggregate([
+                {$unwind: "$feed"},         
+                {$match: { "feed.id": newJSON.feed.id}},
+                {$unwind:"$feed.entries"},         
+                {$match: { "feed.entries.title": "Interval Block - 1"}},         
+                {$unwind:"$feed.entries.content"},         
+                {$unwind:"$feed.entries.content.IntervalBlock"},         
+                {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},         
+                {$group: {             
+                    _id: "$feed.id",         
+                    intervalReadings: {$addToSet: "$feed.entries.content.IntervalBlock.IntervalReadings"}         
+                }},         
+                {$project: { _id: 0, intervalReadings: 1 }}
+            ], function(err, dbIntervals){
+                if (err){
+                    throw err;
+                } else {
+                    //console.log(newIntervals);
+                    //console.log(dbIntervals[0].intervalReadings);
+                    var newIntervals = newIntervals.concat(dbIntervals[0].intervalReadings)
+                    var newDuration = 0;
+                    var newStart = dbIntervals[0].intervalReadings[0].timePeriod.start;
+                    var now = new Date();
+                    var strNow = now.toISOString();
+                    for(var i=0; i<newIntervals.length; ++i) {
+                        for(var j=i+1; j<newIntervals.length; ++j) {
+                            if(newIntervals[i].timePeriod.start === newIntervals[j].timePeriod.start)
+                                newIntervals.splice(j--, 1);
+                        }
+                        newDuration = newDuration + parseInt(newIntervals[i].timePeriod.duration);
+                        if ( newIntervals[i].timePeriod.start < newStart)
+                            newStart = newIntervals[i].timePeriod.start;
+                    }
+        
+                    Account.update(
+                        {
+                                "feed.id": newJSON.feed.id,
+                                "feed.entries.title": "Interval Block - 1"
+                        },
+                        {$set: {
+                                "feed.entries.$.content.IntervalBlock.IntervalReadings": newIntervals,
+                                "feed.entries.$.content.IntervalBlock.interval.duration": newDuration,
+                                "feed.entries.$.content.IntervalBlock.interval.start": newStart,
+                                "feed.entries.$.updated": now
+                        }}
+                    , function(err, updated){
+                        if (err)
+                                throw err
+                        console.log(updated);
+                        Account.find({'feed.id': newJSON.feed.id}, function(err, result){
+                                if (err)
+                                        throw err;
+                                res.json(result);
+                        });
+                    });
+                }
+            });
+        }
+    });
+};
