@@ -78,90 +78,23 @@ var AccountSchema = new mongoose.Schema({
 
 var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
 
-module.exports.getAccountHourlyUsage = function(id, callback) { 
-    Account.aggregate([
-        {$unwind: "$feed"},
-        {$match: { "feed.id": id}}, 
-        {$unwind:"$feed.entries"},
-        {$match: { "feed.entries.title": "Interval Block - 1"}},
-        {$unwind:"$feed.entries.content"},
-        {$unwind:"$feed.entries.content.IntervalBlock"},
-        {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},
-        {$match: { "feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start": {$gte: 1521172801, $lt:1521187201}}},
-        {$project: { Intervals: "$feed.entries.content.IntervalBlock.IntervalReadings" }}
-    ], function(err, data){
-        if (err)
-            throw err
-            console.log(data);
-        callback(null, data);
-    });
-};
-
-module.exports.getAccountAggregatedUsage = function(begin, end, callback){
-    Account.aggregate([
-        {$unwind:"$feed"},
-        {$match: { "feed.id": "Michael:uuid:79f97f63-967b-474b-bf10-e3d4b47531e1" }},
-        {$unwind:"$feed.entries"},
-        {$match: { "feed.entries.title": "Interval Block - 1"}},
-        {$unwind:"$feed.entries.content"},
-        {$unwind:"$feed.entries.content.IntervalBlock"},
-        {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},
-        {$match: { "feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start": {$gte: begin, $lt: end}}},
-        {$group: { 
-            _id: "$_id",
-            duration: {$sum: "$feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.duration"},
-            start: {$min: "$feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start"},
-            value: {$sum: "$feed.entries.content.IntervalBlock.IntervalReadings.value"}
-        }} ,
-        {$project: {
-            intervalReading:{
-                timePeriod:{
-                    duration: "$duration",
-                    start: "$start"
-                },
-                value: "$value"
-            }
-
-        }}
-    ], function(err, data){
-        if (err)
-            throw err
-            console.log(data);
-        callback(null, data);
-    });
-}
-
-module.exports.getAccountIntervalEntry = function(id, callback) { 
-    Account.aggregate([
-        {$unwind: "$feed"},
-        {$match: { "feed.id": id}}, 
-        {$unwind:"$feed.entries"},
-        {$match: { "feed.entries.title": "Interval Block - 1"}},
-        {$project: { entry: "$feed.entries" }}
-    ], function(err, data){
-        if (err)
-            throw err
-            console.log(data);
-        callback(null, data);
-    });
-};
-
 module.exports.saveInDb = function(newJSON, callback) {
     Account.findOne({'feed.id': newJSON.feed.id}, function(err, document){
         if (err)
             throw err
         if (document == null){
             //save json directly to db
+            console.log("save new object in 'saveInDb'");
             newJSON.save(callback);
         } else {
             //update the document in db
+            console.log("update an axisting object in 'saveInDb'");
             var newIntervals;
             for(var i=0; i<newJSON.feed.entries.length; i++){
                     if( newJSON.feed.entries[i].title == "Interval Block - 1") {
                             newIntervals = newJSON.feed.entries[i].content.IntervalBlock.IntervalReadings;                        
                     }
             }
-            //var newIntervals = newJSON.feed.entries.content.IntervalBlock.IntervalReadings;
             Account.aggregate([
                 {$unwind: "$feed"},         
                 {$match: { "feed.id": newJSON.feed.id}},
@@ -179,8 +112,6 @@ module.exports.saveInDb = function(newJSON, callback) {
                 if (err){
                     throw err;
                 } else {
-                    //console.log(newIntervals);
-                    //console.log(dbIntervals[0].intervalReadings);
                     var newIntervals = newIntervals.concat(dbIntervals[0].intervalReadings)
                     var newDuration = 0;
                     var newStart = dbIntervals[0].intervalReadings[0].timePeriod.start;
@@ -210,7 +141,7 @@ module.exports.saveInDb = function(newJSON, callback) {
                     , function(err, updated){
                         if (err)
                                 throw err
-                        console.log(updated);
+                        console.log("*** update result" + updated);
                         Account.find({'feed.id': newJSON.feed.id}, function(err, result){
                                 if (err)
                                         throw err;
@@ -222,3 +153,106 @@ module.exports.saveInDb = function(newJSON, callback) {
         }
     });
 };
+
+module.exports.getAccountIntervalEntry = function(id) { 
+    console.log("In 'getAccountIntervalEntry'");
+    return new Promise(function(resolve, reject){
+        Account.aggregate([
+            {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
+            {$unwind:"$feed.entries"},
+            {$match: { "feed.entries.title": "Interval Block - 1"}},
+            {$project: { entry: "$feed.entries" }}
+        ], function(err, data){
+            if (err){
+                reject(err);
+            } else {
+                resolve(data)
+            }
+        });
+    });
+};
+
+/* 
+module.exports.getAccountIntervalEntry = function(id, callback) { 
+    Account.aggregate([
+        {$unwind: "$feed"},
+        {$match: { "feed.id": id}}, 
+        {$unwind:"$feed.entries"},
+        {$match: { "feed.entries.title": "Interval Block - 1"}},
+        {$project: { entry: "$feed.entries" }}
+    ], function(err, data){
+        if (err)
+            throw err
+            console.log("********data: " + data);
+    });
+};
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports.getAccountHourlyUsage = function(id, begining, end, callback) { 
+    Account.aggregate([
+        {$unwind: "$feed"},
+        {$match: { "feed.id": id}}, 
+        {$unwind:"$feed.entries"},
+        {$match: { "feed.entries.title": "Interval Block - 1"}},
+        {$unwind:"$feed.entries.content"},
+        {$unwind:"$feed.entries.content.IntervalBlock"},
+        {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},
+        {$match: { "feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start": {$gte: begining, $lt:end}}},
+        {$project: { Intervals: "$feed.entries.content.IntervalBlock.IntervalReadings" }}
+    ], function(err, data){
+        if (err)
+            throw err
+            console.log(data);
+        callback(null, data);
+    });
+};
+
+module.exports.getAccountAggregatedUsage = function(begin, end, callback){
+    console.log("In 'getAccountAggregatedUsage'");
+    Account.aggregate([
+        {$unwind:"$feed"},
+        {$match: { "feed.id": "Michael:uuid:79f97f63-967b-474b-bf10-e3d4b47531e1" }},
+        {$unwind:"$feed.entries"},
+        {$match: { "feed.entries.title": "Interval Block - 1"}},
+        {$unwind:"$feed.entries.content"},
+        {$unwind:"$feed.entries.content.IntervalBlock"},
+        {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},
+        {$match: { "feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start": {$gte: begin, $lt: end}}},
+        {$group: { 
+            _id: "$_id",
+            duration: {$sum: "$feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.duration"},
+            start: {$min: "$feed.entries.content.IntervalBlock.IntervalReadings.timePeriod.start"},
+            value: {$sum: "$feed.entries.content.IntervalBlock.IntervalReadings.value"}
+        }} ,
+        {$project: {
+            intervalReading:{
+                timePeriod:{
+                    duration: "$duration",
+                    start: "$start"
+                },
+                value: "$value"
+            }
+
+        }}
+    ], function(err, data){
+        if (err)
+            throw err
+            console.log("*** data: " + data);
+        callback(null, data);
+    });
+}
+

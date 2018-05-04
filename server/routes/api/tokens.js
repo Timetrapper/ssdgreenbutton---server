@@ -46,18 +46,12 @@ apiRoutes.post('/authenticate', function(req, res) {
         } else {
 		 // check that password matches
             User.comparePassword(req.body.password, user.password, function(err, isMatch) {
-                if (isMatch && !err && user.role == "user") {
+                if (isMatch && !err ) {
                     // create token
                     var token = jwt.sign({data:user}, config.secret, {
                         expiresIn: 10080 // week in seconds
                     });
-                    res.json({ role: 'user', success: true, token: 'JWT ' + token });
-                } else if (isMatch && !err && user.role == "admin") {
-                    // create token
-                    var token = jwt.sign({data:user}, config.secret, {
-                        expiresIn: 10080 // week in seconds
-                    });
-                    res.json({ role: 'admin', success: true, token: 'JWT ' + token });
+                    res.json({ success: true, token: 'JWT ' + token });
                 } else {
                     res.send( {
                         success: false,
