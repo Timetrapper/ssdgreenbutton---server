@@ -78,41 +78,42 @@ var AccountSchema = new mongoose.Schema({
 
 var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
 
-module.exports.saveInDb = function(newJSON, callback) {
-    Account.findOne({'feed.id': newJSON.feed.id}, function(err, document){
-        if (err)
-            throw err
+module.exports.saveInDb = async function(inputJSON) {
+    try {
+        let document = Account.findOne({'feed.id': inputJSON.feed.id});
         if (document == null){
             //save json directly to db
             console.log("save new object in 'saveInDb'");
-            newJSON.save(callback);
+            try {
+                inputJSON.save();
+            } catch (err) {
+                console.log("*** error: " + err);
+            }
         } else {
             //update the document in db
             console.log("update an axisting object in 'saveInDb'");
-            var newIntervals;
-            for(var i=0; i<newJSON.feed.entries.length; i++){
-                    if( newJSON.feed.entries[i].title == "Interval Block - 1") {
-                            newIntervals = newJSON.feed.entries[i].content.IntervalBlock.IntervalReadings;                        
-                    }
-            }
-            Account.aggregate([
-                {$unwind: "$feed"},         
-                {$match: { "feed.id": newJSON.feed.id}},
-                {$unwind:"$feed.entries"},         
-                {$match: { "feed.entries.title": "Interval Block - 1"}},         
-                {$unwind:"$feed.entries.content"},         
-                {$unwind:"$feed.entries.content.IntervalBlock"},         
-                {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},         
-                {$group: {             
-                    _id: "$feed.id",         
-                    intervalReadings: {$addToSet: "$feed.entries.content.IntervalBlock.IntervalReadings"}         
-                }},         
-                {$project: { _id: 0, intervalReadings: 1 }}
-            ], function(err, dbIntervals){
-                if (err){
-                    throw err;
-                } else {
-                    var newIntervals = newIntervals.concat(dbIntervals[0].intervalReadings)
+            try {
+                var inputIntervals;
+                for(var i=0; i<inputJSON.feed.entries.length; i++){
+                        if( inputJSON.feed.entries[i].title == "Interval Block - 1") {
+                            inputIntervals = inputJSON.feed.entries[i].content.IntervalBlock.IntervalReadings;                        
+                        }
+                }
+                let dbIntervals = Account.aggregate([
+                    {$unwind: "$feed"},         
+                    {$match: { "feed.id": inputJSON.feed.id}},
+                    {$unwind:"$feed.entries"},         
+                    {$match: { "feed.entries.title": "Interval Block - 1"}},         
+                    {$unwind:"$feed.entries.content"},         
+                    {$unwind:"$feed.entries.content.IntervalBlock"},         
+                    {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},         
+                    {$group: {             
+                        _id: "$feed.id",         
+                        intervalReadings: {$addToSet: "$feed.entries.content.IntervalBlock.IntervalReadings"}         
+                    }},         
+                    {$project: { _id: 0, intervalReadings: 1 }}
+                ]);
+                var newIntervals = inputIntervals.concat(dbIntervals[0].intervalReadings)
                     var newDuration = 0;
                     var newStart = dbIntervals[0].intervalReadings[0].timePeriod.start;
                     var now = new Date();
@@ -126,34 +127,41 @@ module.exports.saveInDb = function(newJSON, callback) {
                         if ( newIntervals[i].timePeriod.start < newStart)
                             newStart = newIntervals[i].timePeriod.start;
                     }
-        
-                    Account.update(
+                try{
+                    let updateSuccess = Account.update(
                         {
-                                "feed.id": newJSON.feed.id,
-                                "feed.entries.title": "Interval Block - 1"
+                            "feed.id": inputJSON.feed.id,
+                            "feed.entries.title": "Interval Block - 1"
                         },
                         {$set: {
-                                "feed.entries.$.content.IntervalBlock.IntervalReadings": newIntervals,
-                                "feed.entries.$.content.IntervalBlock.interval.duration": newDuration,
-                                "feed.entries.$.content.IntervalBlock.interval.start": newStart,
-                                "feed.entries.$.updated": now
+                            "feed.entries.$.content.IntervalBlock.IntervalReadings": newIntervals,
+                            "feed.entries.$.content.IntervalBlock.interval.duration": newDuration,
+                            "feed.entries.$.content.IntervalBlock.interval.start": newStart,
+                            "feed.entries.$.updated": now
                         }}
-                    , function(err, updated){
-                        if (err)
-                                throw err
-                        console.log("*** update result" + updated);
-                        Account.find({'feed.id': newJSON.feed.id}, function(err, result){
-                                if (err)
-                                        throw err;
-                                res.json(result);
-                        });
-                    });
+                    );
+                    console.log("update result: " + updateSuccess);
+                    try{
+                        let newAccount = Account.find({'feed.id': inputJSON.feed.id});
+                        res.json(newAccount);
+                    } catch (err) {
+                        console.log("*** error: " + err);
+                    }
+                } catch (err) {
+                    console.log("*** error: " + err);
                 }
-            });
+            } catch (err) {
+                console.log("*** error: " + err);
+            }
         }
-    });
+    } catch (err) {
+        console.log("*** error: " + err);
+        return null;
+    }
+    
 };
 
+/*
 module.exports.getAccountIntervalEntry = function(id) { 
     console.log("In 'getAccountIntervalEntry'");
     return new Promise(function(resolve, reject){
@@ -171,6 +179,24 @@ module.exports.getAccountIntervalEntry = function(id) {
             }
         });
     });
+};
+*/
+
+module.exports.getAccountIntervalEntry = async function(id) { 
+    console.log("In 'getAccountIntervalEntry'");
+    try {
+        let data = Account.aggregate([
+            {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
+            {$unwind:"$feed.entries"},
+            {$match: { "feed.entries.title": "Interval Block - 1"}},
+            {$project: { entry: "$feed.entries" }}
+        ]);
+        return data;
+    } catch (err) {
+        console.log("*** error: " + err);
+        return null;
+    }
 };
 
 /* 

@@ -5,14 +5,14 @@ var moment = require('moment');
 var passport = require('passport');
 
 var Account = require("../../models/account");
-
+/*
 router.get("/:id", passport.authenticate('jwt', {session: false}), function(req, res){
     Account.getAccountIntervalEntry(req.params.id)
             .then(data => res.json(data))
             .catch(err => res.err(err));
 });
+*/
 
-/*
 router.get("/:id", passport.authenticate('jwt', {session: false}), async function(req, res){
     try {
         let data = await Account.getAccountIntervalEntry(req.params.id);
@@ -21,7 +21,6 @@ router.get("/:id", passport.authenticate('jwt', {session: false}), async functio
         res.err(err)
     }
 });
-*/
 
 /* 
 router.get("/:id", passport.authenticate('jwt', {session: false}), function(req, res){
