@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var CircularJSON = require('circular-json');
 
 //var IntervalReading = require("./intervalReading");
 
@@ -197,6 +196,25 @@ module.exports.getAccountIntervalEntry = async function(id) {
             {$project: { entry: "$feed.entries" }}
         ]);
         
+        return data;
+    } catch (err) {
+        console.log("*** error: " + err);
+        return null;
+    }
+};
+
+module.exports.getReadingType = async function(id) { 
+    console.log("In 'getReadingType'");
+    try {
+        let data = await Account.aggregate([
+            {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
+            {$unwind:"$feed.entries"},
+            {$unwind:"$feed.entries.content"},
+            {$match: {"feed.entries.content.ReadingType": {$exists: true}}},
+            {$project: { _id: 0, ReadingType: "$feed.entries.content.ReadingType"}}        ]);
+
+        console.log("readingType: " + JSON.stringify(data));
         return data;
     } catch (err) {
         console.log("*** error: " + err);
