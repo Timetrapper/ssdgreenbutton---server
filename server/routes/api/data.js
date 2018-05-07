@@ -16,7 +16,8 @@ router.get("/:id", passport.authenticate('jwt', {session: false}), function(req,
 router.get("/:id", passport.authenticate('jwt', {session: false}), async function(req, res){
     try {
         let data = await Account.getAccountIntervalEntry(req.params.id);
-        res.json(data);
+        let dataReadingType = await Account.getReadingType(req.params.id);
+        res.json({ "ReadingType": dataReadingType[0], "intervalReadings": data[0]});
     } catch (err) {
         res.err(err)
     }
