@@ -7,7 +7,6 @@ var moment = require('moment');
 //var db = mongojs(config.database, ["greenbuttondata"]);
 
 var Account = require("../../models/account");
-//var IntervalReading = require("../../models/intervalReading");
 
 router.get("/hourly/:id", function(req, res){
     console.log("in the function");

@@ -1,22 +1,23 @@
-/*var mongoose = require('mongoose');
-var db = mongoose.connection;
+var mongoose = require('mongoose');
+var express = require("express");   
+var router = express.Router();
+var config = require('../config');
+mongoose.connect(config.database_mlb);
+var Account = require('../models/account');
+var eyes = require('eyes');
 
-var data = require('../json/xml.json');
+module.exports.TOMONGOFROMXML = function(jSONObject)  {
+  var post_model = Account;
+  var parsed = JSON.parse(jSONObject);
+  var newData = new post_model(parsed);
+  newData.save(function(err) {
+      if(err) {
+        // TODO: Check for Unexpected error.
+          throw err;
+      }
+      else {
+          console.log('Inserted');
+      }
+  });
+}
 
-db.open(function(err, db) {
-    var collection = db.usersenergy("simple_document_insert_collection_no_safe");
-        // Insert a single document
-        collection.insert(data);
-      
-        // Wait for a second before finishing up, to ensure we have written the item to disk
-        setTimeout(function() {
-      
-          // Fetch the document
-          collection.findOne(data, function(err, item) {
-            assert.equal(null, err);
-            assert.equal('data', item.energy);
-            db.close();
-          })
-        }, 100);
-});
-*/

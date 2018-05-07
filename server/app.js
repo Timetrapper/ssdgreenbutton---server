@@ -1,5 +1,4 @@
 var bodyParser = require('body-parser');
-var bluebird = require('bluebird');
 var config = require('./config');
 var cookieParser = require('cookie-parser');
 const espiParser = require('espi-parser');
@@ -8,17 +7,15 @@ var exphbs = require('express-handlebars');
 var express = require("express");
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
-var fs = require('fs');
 var moment = require('moment'); //npm install moment
 var http = require("http");
 var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var session = require('express-session');
-var del = require('del');
 var mongoose = require('mongoose');
 
-
+var handleXMLToJON = require('./routes/api/xml');
 //Mlabs
 var mongoose = require('mongoose');
 mongoose.connect(config.database_mlb);
@@ -43,22 +40,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-// Models
-
 // Routes
 var routes = require('./routes/');
 var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
 var daily = require('./routes/api/daily');
-//var files  = require('./routes/files')();
-//app.use('/files', parseUploads, imageRoutes);
-
-// // Get the API route ...
-// var api = require('./routes/api.route');
-
-// Database connection
-//mongoose.Promise = bluebird;
 
 // Initialize app
 var app = express();
@@ -141,74 +128,6 @@ function finished() {
     console.log("Finished");
 }
 
-// Delete files in the uploads folder
-function cleanFolder(folderPath) {
-    // delete files inside folder but not the folder itself
-    del.synch(['./public/uploads/*.*']).then(paths => {
-        console.log('Deleted files and folders:\n', paths.join('\n'));
-    });
-};
-
-// File upload storage
-var multer = require('multer');
-
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'public/xml/uploads')
-    },
-    filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now())
-    }
-});
-
-var upload = multer({storage: storage });
-
-app.post('/upload', upload.single('xml'), (req, res, next) => {
-    req.flash('success-msg', "Your XML is Uploaded");
-    console.log(req.file.filename);
-    convertToJSON(req.file.filename, () => {
-        res.json({'message': 'File Converted To jSON'});
-    })
-    storeInMongo(req.file.filename, () => {
-        res.json({'message': 'File Stored In Mongo'});
-    })
-
-});
-
-
-var storeInMongo = function(req) {
-
-    console.log('WHY:' + req);
-    //const toMongo = fs.readFileSync('./json/' + req + '.json', 'utf8');
-    const toMongo = require('./json/' + req + '.json');
-    var post_model = Account;
-    var newData = new post_model(toMongo);
-
-    newData.save(function(err) {
-        console.log(newData);
-        if(err) {
-            throw err;
-        }
-        else {
-            console.log('Inserted');
-        }
-    });
-}
-
-// Convert XML to JSON and Write to File With Unique Identifer
-var convertToJSON = function(req) {
-    // read xml with identifer
-    const data = fs.readFileSync('./public/xml/uploads/' + req, 'utf8');
-    // Convert XML to json
-    const json = espiParser(data);
-    // Stringify for Writing
-    var jsonstring = JSON.stringify(json);
-
-    fs.writeFileSync('./json/' + req +'.json', jsonstring, finished);
-}
-
-
-
 // Route to created JSON file
 app.get("/api/xml", function (req, res, next) {
     res.json(result);
@@ -226,32 +145,13 @@ app.get('/api/greenbuttondata', function (req, res) {
 });
 */
 
+handleXMLToJON.XMLREQUEST();
+
 app.use('/', routes);
 app.use("/", daily);
 app.use('/users', users);
 app.use('/token', tokensApi);
-//app.use('/files', files);
 app.use('/', index);
-
-/*
-// Test out Saving of jSON to Mongo
-db.open(function(err, db) {
-    var collection = db.usersenergy("simple_document_insert_collection_no_safe");
-    // Insert a single document
-    collection.insert(data);
-    
-    // Wait for a second before finishing up, to ensure we have written the item to disk
-    setTimeout(function() {
-    
-        // Fetch the document
-        collection.findOne(data, function(err, item) {
-        assert.equal(null, err);
-        assert.equal('data', item.energy);
-        db.close();
-        })
-    }, 100);
-});
-*/
 
 // set passport
 app.set('port', config.port);
