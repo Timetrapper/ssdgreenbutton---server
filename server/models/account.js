@@ -1,4 +1,6 @@
 var mongoose = require("mongoose");
+var CircularJSON = require('circular-json');
+
 //var IntervalReading = require("./intervalReading");
 
 var AccountSchema = new mongoose.Schema({
@@ -80,14 +82,16 @@ var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbu
 
 module.exports.saveInDb = async function(inputJSON) {
     try {
-        let document = Account.findOne({'feed.id': inputJSON.feed.id});
+        let document = await Account.findOne({'feed.id': inputJSON.feed.id});
+        //console.log("document: " + JSON.stringify(document));
         if (document == null){
             //save json directly to db
             console.log("save new object in 'saveInDb'");
             try {
-                inputJSON.save();
+                let createSuccess = await Account.create(inputJSON);
+                console.log("creation result: " + createSuccess);
             } catch (err) {
-                console.log("*** error: " + err);
+                console.log("** error: " + err);
             }
         } else {
             //update the document in db
@@ -99,10 +103,10 @@ module.exports.saveInDb = async function(inputJSON) {
                             inputIntervals = inputJSON.feed.entries[i].content.IntervalBlock.IntervalReadings;                        
                         }
                 }
-                let dbIntervals = Account.aggregate([
-                    {$unwind: "$feed"},         
-                    {$match: { "feed.id": inputJSON.feed.id}},
-                    {$unwind:"$feed.entries"},         
+                let dbIntervals = await Account.aggregate([
+                    {$unwind: "$feed"},
+                    {$match: { "feed.id": inputJSON.feed.id}}, 
+                    {$unwind:"$feed.entries"},
                     {$match: { "feed.entries.title": "Interval Block - 1"}},         
                     {$unwind:"$feed.entries.content"},         
                     {$unwind:"$feed.entries.content.IntervalBlock"},         
@@ -113,7 +117,7 @@ module.exports.saveInDb = async function(inputJSON) {
                     }},         
                     {$project: { _id: 0, intervalReadings: 1 }}
                 ]);
-                var newIntervals = inputIntervals.concat(dbIntervals[0].intervalReadings)
+                var newIntervals = inputIntervals.concat(dbIntervals[0].intervalReadings);
                     var newDuration = 0;
                     var newStart = dbIntervals[0].intervalReadings[0].timePeriod.start;
                     var now = new Date();
@@ -128,7 +132,7 @@ module.exports.saveInDb = async function(inputJSON) {
                             newStart = newIntervals[i].timePeriod.start;
                     }
                 try{
-                    let updateSuccess = Account.update(
+                    let updateSuccess = await Account.update(
                         {
                             "feed.id": inputJSON.feed.id,
                             "feed.entries.title": "Interval Block - 1"
@@ -142,20 +146,20 @@ module.exports.saveInDb = async function(inputJSON) {
                     );
                     console.log("update result: " + updateSuccess);
                     try{
-                        let newAccount = Account.find({'feed.id': inputJSON.feed.id});
-                        res.json(newAccount);
+                        let newAccount = await Account.find({'feed.id': inputJSON.feed.id});
+                        return newAccount;
                     } catch (err) {
-                        console.log("*** error: " + err);
+                        console.log("***** error: " + err);
                     }
                 } catch (err) {
-                    console.log("*** error: " + err);
+                    console.log("**** error: " + err);
                 }
             } catch (err) {
                 console.log("*** error: " + err);
             }
         }
     } catch (err) {
-        console.log("*** error: " + err);
+        console.log("* error: " + err);
         return null;
     }
     
@@ -185,13 +189,14 @@ module.exports.getAccountIntervalEntry = function(id) {
 module.exports.getAccountIntervalEntry = async function(id) { 
     console.log("In 'getAccountIntervalEntry'");
     try {
-        let data = Account.aggregate([
+        let data = await Account.aggregate([
             {$unwind: "$feed"},
             {$match: { "feed.id": id}}, 
             {$unwind:"$feed.entries"},
             {$match: { "feed.entries.title": "Interval Block - 1"}},
             {$project: { entry: "$feed.entries" }}
         ]);
+        
         return data;
     } catch (err) {
         console.log("*** error: " + err);
@@ -228,7 +233,7 @@ module.exports.getAccountIntervalEntry = function(id, callback) {
 
 
 
-module.exports.getAccountHourlyUsage = function(id, begining, end, callback) { 
+/* module.exports.getAccountHourlyUsage = function(id, begining, end, callback) { 
     Account.aggregate([
         {$unwind: "$feed"},
         {$match: { "feed.id": id}}, 
@@ -282,3 +287,4 @@ module.exports.getAccountAggregatedUsage = function(begin, end, callback){
     });
 }
 
+ */
