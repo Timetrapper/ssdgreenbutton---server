@@ -1,6 +1,6 @@
-# Project name
+# Project
 
-"Download My Data" Green Button Grapher
+"Download My Data" Green Button Graphed
 
 # Description
 
@@ -19,8 +19,8 @@ The next section is usage, in which you instruct other people on how to use your
 # Credits
 
 This project would not have been possible without the generous support of Plasmatic Technologies Inc (https://www.plasmatic.ai/).
-Plasmatic is working to unlease the power of a smart home, in part through their Alana Connected Home System, and they focus on the intersection of power systems, connected devices, and consumer needs.
-Plasmatic provided this team with the project paramaters and continual support to see it reach release.
+Plasmatic is working to unleash the power of a smart home, in part through their Alana Connected Home System, and they focus on the intersection of power systems, connected devices, and consumer needs.
+Plasmatic provided this team with the project parameters and continual support to see it reach release.
 
 # MIT License
 
