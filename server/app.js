@@ -18,7 +18,6 @@ var session = require('express-session');
 var del = require('del');
 var mongoose = require('mongoose');
 
-
 //Mlabs
 var mongoose = require('mongoose');
 mongoose.connect(config.database_mlb);
@@ -207,11 +206,9 @@ var convertToJSON = function(req) {
     fs.writeFileSync('./json/' + req +'.json', jsonstring, finished);
 }
 
-
-
 // Route to created JSON file
-app.get("/api/xml", function (req, res, next) {
-    res.json(result);
+app.get("/api/json", function (req, res, next) {
+    res.json(json);
 });
 
 /*
@@ -225,13 +222,6 @@ app.get('/api/greenbuttondata', function (req, res) {
     })
 });
 */
-
-app.use('/', routes);
-app.use("/data", dataApi);
-app.use('/users', users);
-app.use('/token', tokensApi);
-//app.use('/files', files);
-app.use('/', index);
 
 /*
 // Test out Saving of jSON to Mongo
@@ -252,6 +242,12 @@ db.open(function(err, db) {
     }, 100);
 });
 */
+
+app.use('/', routes);
+app.use("/data", dataApi);
+app.use('/users', users);
+app.use('/token', tokensApi);
+app.use('/', index);
 
 // set passport
 app.set('port', config.port);
