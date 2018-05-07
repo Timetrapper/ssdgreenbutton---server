@@ -1,28 +1,32 @@
-.App {
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: #c7d6ce;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+  padding: 0 20px 0 20px;
+}
+
+.loading {
+  padding: 20px;
+  font-size: 20px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+.address {
+  text-align: center;
   padding: 20px;
-  color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.address > h1 {
+  font-size: 20px;
 }
 
-.App-intro {
-  font-size: large;
+.source-code {
+  text-align: center;
+  padding: 0 0 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
