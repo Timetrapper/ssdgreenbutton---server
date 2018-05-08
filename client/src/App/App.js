@@ -69,7 +69,6 @@ export default class App extends React.Component {
 
     return (
       <div className="App">
-
         <header className="App-header">
           <h1 className="App-title">Green Button Data</h1>
           <img src={greenButtonLogo} className="App-green-button-logo" alt="greenButtonLogo" />
@@ -77,13 +76,13 @@ export default class App extends React.Component {
 
         <div>  
           <RaisedButton
-              name="file" 
-              id="file"
-              class="inputfile"
-              className="App-buttons"
-              containerElement='label'
-              label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
-                <input for="file" type="file"/>
+            name="file" 
+            id="file"
+            class="inputfile"
+            className="App-buttons"
+            containerElement='label'
+            label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
+            <input for="file" type="file"/>
           </RaisedButton>
         </div> 
 
@@ -111,28 +110,28 @@ export default class App extends React.Component {
         </div>
 
         <RaisedButton className="App-buttons"
-              onClick={() => {(window.confirm('Display 24 Hour Period')) } }
-        >Display 24 Hours
+          onClick={() => {(window.confirm('Display 24 Hour Period')) } }
+          >Display 24 Hours
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-              onClick={() => {(window.confirm('Display 7 Day Period')) } }
-        >Display 7 Days
+          onClick={() => {(window.confirm('Display 7 Day Period')) } }
+          >Display 7 Days
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-              onClick={() => {(window.confirm('Display 365 Day Period')) } }
-        >Display 30 Days
+          onClick={() => {(window.confirm('Display 365 Day Period')) } }
+          >Display 30 Days
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-              onClick={() => {(window.confirm('Display 365 Day Period')) } }
-        >Display 365 Days
+          onClick={() => {(window.confirm('Display 365 Day Period')) } }
+          >Display 365 Days
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-              onClick={() => {(window.confirm('Display All-Time')) } }
-        >Display All-Time
+          onClick={() => {(window.confirm('Display All-Time')) } }
+          >Display All-Time
         </RaisedButton>
 
         <footer className="App-footer">
@@ -143,7 +142,6 @@ export default class App extends React.Component {
             <img src={githubLogo} className="App-github-logo" alt="githubLogo"/>
           </a>
         </footer>
-
       </div> 
     );
   }
