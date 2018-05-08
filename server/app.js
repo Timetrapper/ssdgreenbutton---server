@@ -12,9 +12,31 @@ var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var session = require('express-session');
+<<<<<<< HEAD
 var handleXMLToJON = require('./routes/api/xml');
 var connectToDB = require('./_helpers/mongoconnect/mongoconnect');
 var useExpressValidator = require('./config/expressValidator');
+=======
+var mongoose = require('mongoose');
+
+// Initialize app
+var app = express();
+
+// Models
+var Account = require('./models/account');
+
+// Mlabs
+var mongoose = require('mongoose');
+mongoose.connect(config.database_mlb).then(function(){
+    console.log("successfully connected to db");
+    console.log("database name: " + mongoose.connection.db.databaseName);
+}, function(){
+    console.log("failed to connected to db");
+}); 
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+
+>>>>>>> 2ce6480533d880def725cc53a600f2085ccc6d92
 // Security
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -25,9 +47,13 @@ var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
 var dataApi = require('./routes/api/data');
+<<<<<<< HEAD
 
 // Initialize app
 var app = express();
+=======
+var handleXMLToJON = require('./routes/api/xml');
+>>>>>>> 2ce6480533d880def725cc53a600f2085ccc6d92
 
 connectToDB.CONNECTTODB();
 
@@ -39,7 +65,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
     defaultLayout: 'layout'
 }));
-
 app.set('view engine', 'handlebars');
 
 // BodyParser middleware
@@ -70,6 +95,20 @@ useExpressValidator.USEVALIDATOR();
 // connect flash middleware
 app.use(flash());
 
+// enable CORS
+app.use('/', routes);
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
+});
+
+<<<<<<< HEAD
+// Call XML Request 
+// TODO: Put in Function 
+handleXMLToJON.XMLREQUEST();
+=======
 // global vars
 app.use(function (req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
@@ -78,25 +117,14 @@ app.use(function (req, res, next) {
     res.locals.user = req.user || null;
     next();
 });
+>>>>>>> 2ce6480533d880def725cc53a600f2085ccc6d92
 
-// enable CORS
-app.use('/', routes);
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    next();
-});
-
-// Call XML Request 
-// TODO: Put in Function 
-handleXMLToJON.XMLREQUEST();
-
-app.use('/', routes);
+app.use('/', index);
 //app.use("/", daily);
 app.use('/users', users);
 app.use('/token', tokensApi);
-app.use('/', index);
+
+handleXMLToJON.XMLREQUEST();
 
 // set passport
 app.set('port', config.port);
