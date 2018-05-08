@@ -1,6 +1,4 @@
-var bodyParser = require('body-parser');
 var config = require('./config');
-const espiParser = require('espi-parser');
 const util = require('util');
 var exphbs = require('express-handlebars');
 var express = require("express");
@@ -27,18 +25,20 @@ var dataApi = require('./routes/api/data');
 // Initialize app
 var app = express();
 
+// Application Settings & Middleware
 appSettings.APPSETTINGS();
+// Connection to Mongo & Mongoose
 connectToDB.CONNECTTODB();
+// Set Express Validation
+useExpressValidator.USEVALIDATOR();
+// Call XML Parse Request
+handleXMLToJON.XMLREQUEST();
 
 // View Engine - Express Handlebars
 app.engine('handlebars', exphbs({
     defaultLayout: 'layout'
 }));
 app.set('view engine', 'handlebars');
-
-useExpressValidator.USEVALIDATOR();
-handleXMLToJON.XMLREQUEST();
-
 // set passport
 app.set('port', config.port);
 

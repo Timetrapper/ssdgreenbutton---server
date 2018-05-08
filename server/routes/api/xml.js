@@ -29,10 +29,8 @@ async.waterfall([
     },
     function(xml, callback) {
         //loggin data
-        var testXML  = JSON.stringify(xml);
         var newXML = espiParser(xml);
-        var stringifiedXML = JSON.stringify(newXML);
-
+        
        JSON.stringify(newXML, function(err, result) {
            console.log("CALLBACK---START----");
             if (err) {
