@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 // express session
 app.use(session({
@@ -56,8 +56,8 @@ app.use(function (req, res, next) {
 
 app.use('/', index);
 //app.use("/", daily);
-app.use('/users', users);
-app.use('/token', tokensApi);
+//app.use('/users', users);
+//app.use('/token', tokensApi);
 
 }
 

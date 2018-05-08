@@ -30,49 +30,14 @@ var app = express();
 appSettings.APPSETTINGS();
 connectToDB.CONNECTTODB();
 
-// Parsers
-
-// app.use(cookieParser());
-
 // View Engine - Express Handlebars
-app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
     defaultLayout: 'layout'
 }));
 app.set('view engine', 'handlebars');
 
-// BodyParser middleware
-/*
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
-// set static folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-// express session
-app.use(session({
-    secret: 'hokuspokus',
-    saveUnititialized: true,
-    resave: true
-}));
-
-// passport initialization
-app.use(passport.initialize());
-app.use(passport.session());
-*/
-// bring in passport strategy we defined
-//require('./config/passport')(passport);
-
 useExpressValidator.USEVALIDATOR();
-
-/*
-
-// Call XML Request 
-// TODO: Put in Function 
 handleXMLToJON.XMLREQUEST();
-*/
 
 // set passport
 app.set('port', config.port);

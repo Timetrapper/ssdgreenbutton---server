@@ -29,12 +29,7 @@ async.waterfall([
     },
     function(xml, callback) {
         //loggin data
-        console.log("pat");
         var testXML  = JSON.stringify(xml);
-        console.log(testXML);
-        console.log("****");
-        console.log("espiParser");
-
         var newXML = espiParser(xml);
         var stringifiedXML = JSON.stringify(newXML);
 
@@ -51,11 +46,7 @@ async.waterfall([
     }, 
     function(json, callback) {
        var jsonObject = JSON.stringify(json);
-       console.log('JSON OBJECT -*-*-*-*-*-*-*');
-       eyes.inspect(jsonObject);
-       //eyes.inspect(jsonObject);
        insertjsontomongo.TOMONGOFROMXML(jsonObject);
-       //eyes.inspect(json);
        callback();
     }
 ], function(err, result) {
