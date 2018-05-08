@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 
-export default class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = { data: [
@@ -146,3 +146,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;
