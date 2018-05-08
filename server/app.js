@@ -5,7 +5,6 @@ const espiParser = require('espi-parser');
 const util = require('util');
 var exphbs = require('express-handlebars');
 var express = require("express");
-var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var moment = require('moment'); //npm install moment
 var http = require("http");
@@ -13,29 +12,9 @@ var jwt = require('jsonwebtoken');
 var LocalStrategy = require('passport-local').Strategy;
 var path = require('path');
 var session = require('express-session');
-var mongoose = require('mongoose');
-
 var handleXMLToJON = require('./routes/api/xml');
-//Mlabs
-var mongoose = require('mongoose');
-mongoose.connect(config.database_mlb);
-var Account = require('./models/account');
-//Upload to Mongoose
-//var post_schema = mongoose.Schema({data: JSON});
-//var post_model = mongoose.model('greenbuttondata', post_schema);
-
-
-// Mlabs
-mongoose.connect(config.database_mlb).then(function(){
-    console.log("successfully connected to db");
-    console.log("database name: " + mongoose.connection.db.databaseName);
-}, function(){
-    console.log("failed to connected to db");
-}); 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error: '));
-
-
+var connectToDB = require('./_helpers/mongoconnect/mongoconnect');
+var useExpressValidator = require('./config/expressValidator');
 // Security
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -46,17 +25,11 @@ var tokensApi = require('./routes/api/tokens');
 var users = require('./routes/users');
 var index = require('./routes/index');
 var dataApi = require('./routes/api/data');
-//var files  = require('./routes/files')();
-//app.use('/files', parseUploads, imageRoutes);
-
-// // Get the API route ...
-// var api = require('./routes/api.route');
-
-// Database connection
-//mongoose.Promise = bluebird;
 
 // Initialize app
 var app = express();
+
+connectToDB.CONNECTTODB();
 
 // Parsers
 app.use(cookieParser());
@@ -92,24 +65,7 @@ app.use(passport.session());
 // bring in passport strategy we defined
 require('./config/passport')(passport);
 
-// express validator
-app.use(expressValidator({
-    errorFormatter: function (param, msg, value) {
-        var namespace = param.split('.');
-        var root = namespace.shift();
-        var formParam = root;
-
-        while (namespace.length) {
-            formParam += '[' + namespace.shift() + ']';
-        }
-
-        return {
-            param: formParam,
-            msg: msg,
-            value: value
-        }
-    }
-}));
+useExpressValidator.USEVALIDATOR();
 
 // connect flash middleware
 app.use(flash());
@@ -132,27 +88,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-function finished() {
-    console.log("Finished");
-}
-
-// Route to created JSON file
-app.get("/api/json", function (req, res, next) {
-    res.json(json);
-});
-
-/*
-// Route to green button data
-app.get('/api/greenbuttondata', function (req, res) {
-    GreenButtonData.getGreenButtonData(function (err, greenbuttondata) {
-        if (err) {
-            throw err;
-        }
-        res.json(greenbuttondata);
-    })
-});
-*/
-
+// Call XML Request 
+// TODO: Put in Function 
 handleXMLToJON.XMLREQUEST();
 
 app.use('/', routes);

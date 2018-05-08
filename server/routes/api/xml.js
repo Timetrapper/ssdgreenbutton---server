@@ -37,15 +37,6 @@ async.waterfall([
 
         var newXML = espiParser(xml);
         var stringifiedXML = JSON.stringify(newXML);
-        /*
-        console.log("NEW XML FROM ESPI");
-        console.log(newXML);
-        console.log("END XML FROM ESPI");
-
-        console.log("NEW jSON FROM ESPI");
-        console.log(stringifiedXML);
-        console.log("END jSON FROM ESPI");
-        */
 
        JSON.stringify(newXML, function(err, result) {
            console.log("CALLBACK---START----");
