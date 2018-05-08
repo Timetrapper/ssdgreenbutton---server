@@ -1,5 +1,4 @@
 module.exports = {
-
   // Database connection information
   'database_mlb':'mongodb://greenbuttonadmin:bcit123@ds259089.mlab.com:59089/greenbuttonapi',
   'database_local': 'users',
