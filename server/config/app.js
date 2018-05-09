@@ -12,6 +12,8 @@ var app = express();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+
+
 // Routes
 var routes = require('../routes/');
 var tokensApi = require('../routes/api/tokens');
@@ -19,7 +21,7 @@ var users = require('../routes/users');
 var index = require('../routes/index');
 var dataApi = require('../routes/api/data');
 
-module.exports.APPSETTINGS = function() {
+
 app.use(cookieParser());
 
 // BodyParser middleware
@@ -55,9 +57,8 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', index);
-//app.use("/", daily);
-//app.use('/users', users);
-//app.use('/token', tokensApi);
+app.use('/users', users);
+app.use('/token', tokensApi);
 
-}
+
 
