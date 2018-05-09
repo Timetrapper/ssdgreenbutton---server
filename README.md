@@ -27,7 +27,7 @@ Navigate to the server, and upload your Green Button data XML. Your data will th
 
 # Credits
 
-This project would not have been possible without the generous support of [Plasmatic Technologies Inc.](https://www.plasmatic.ai/).
+This project would not have been possible without the generous support of [Plasmatic Technologies Inc.](https://www.plasmatic.ai/)
 
 Plasmatic is working to unleash the power of a smart home, in part through their **Alana Connected Home System**, and they focus on the intersection of power systems, connected devices, and consumer needs.
 
