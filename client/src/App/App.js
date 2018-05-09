@@ -4,7 +4,8 @@ import { withAlert } from 'react-alert';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import classNames from 'classnames';
 import githubLogo from './github.png';
-import greenButtonLogo from './green-button.png';
+import greenButtonLogo from './green-button-logo.png';
+import greenButtonLogoFooter from './green-button.png'
 import plasmaticLogo from './plasmatic.png';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -79,7 +80,7 @@ class App extends Component {
             name="file" 
             id="file"
             class="inputfile"
-            className="App-buttons"
+            className="App-upload-button"
             containerElement='label'
             label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
             <input for="file" type="file"/>
@@ -137,6 +138,9 @@ class App extends Component {
         <footer className="App-footer">
           <a href="https://www.plasmatic.ai/">
             <img src={plasmaticLogo} className="App-plasmatic-logo" alt="plasmaticLogo"/>
+          </a>
+          <a href="http://www.greenbuttondata.org//">
+            <img src={greenButtonLogoFooter} className="App-green-button-logo-footer" alt="greenButtonLogo"/>
           </a>
           <a href="https://www.github.com/"> {/*add respository*/}
             <img src={githubLogo} className="App-github-logo" alt="githubLogo"/>
