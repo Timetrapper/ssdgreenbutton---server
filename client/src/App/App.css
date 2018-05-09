@@ -2,6 +2,8 @@
   text-align: center;
 }
 
+
+
 .App-green-button-logo {
   animation-duration: 2s;
   animation-name: bounceIn;
@@ -17,6 +19,7 @@
   background: linear-gradient(180deg, rgba(0,0,0,1) 90%,rgba(0,225,59,1) 100%);
   height: 120px;
   padding: 20px;
+  width: 100%;
   color: white;
   margin-bottom: 40px;
 }
@@ -24,6 +27,14 @@
 .App-title {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 2em;
+}
+
+.Main-body-container {
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 40px;
 }
 
 .App-upload-button {
@@ -63,7 +74,7 @@
   height: 40px;
   padding: 20px;
   margin-top: 40px;
-  position:absolute;
+  width: 100%;
   left:0;
   bottom:0;
   right:0;
@@ -74,6 +85,7 @@
   float: right;
   padding-left: 30px;
   padding-right: 30px;
+  overflow-x: hidden;
 }
 
 .App-green-button-logo-footer {
@@ -81,13 +93,15 @@
   float: right;
   padding-left: 30px;
   padding-right: 30px;
+  overflow-x: hidden;
 }
 
 .App-github-logo {
   height: 40px;
   float: right;
   padding-left: 30px;
-  padding-right: 30px;;
+  padding-right: 30px;
+  overflow-x: hidden;
 }
 
 @keyframes bounceIn {

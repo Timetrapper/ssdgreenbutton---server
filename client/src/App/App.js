@@ -75,6 +75,8 @@ class App extends Component {
           <img src={greenButtonLogo} className="App-green-button-logo" alt="greenButtonLogo" />
         </header>
 
+  <div className="Main-body-container">    
+
         <div>  
           <RaisedButton
             name="file" 
@@ -90,8 +92,8 @@ class App extends Component {
           <Bar
             data={this.state.data}
             keys={this.state.data.value} // This isn't working...
-            width={600}
-            height={400}
+            width={1200}
+            height={800}
             margin={{
               "top": 20,
               "right": 10,
@@ -133,6 +135,8 @@ class App extends Component {
           onClick={() => {(window.confirm('Display All-Time')) } }
           >Display All-Time
         </RaisedButton>
+
+        </div> {/*main body wrapper*/}
 
         <footer className="App-footer">
           <a href="https://www.plasmatic.ai/">
