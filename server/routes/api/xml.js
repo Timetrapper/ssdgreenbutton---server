@@ -44,7 +44,7 @@ async.waterfall([
     }, 
     function(json, callback) {
        var jsonObject = JSON.stringify(json);
-       insertjsontomongo.TOMONGOFROMXML(jsonObject);
+       //insertjsontomongo.TOMONGOFROMXML(jsonObject);
        callback();
     }
 ], function(err, result) {
