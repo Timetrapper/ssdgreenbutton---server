@@ -79,15 +79,14 @@ class App extends Component {
           <RaisedButton
             name="file" 
             id="file"
-            class="inputfile"
             className="App-upload-button"
             containerElement='label'
             label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
-            <input for="file" type="file"/>
+            <input htmlFor="file" type="file"/>
           </RaisedButton>
         </div> 
 
-        <div class="Bar-chart-wrapper">
+        <div className="Bar-chart-wrapper">
           <Bar
             data={this.state.data}
             keys={this.state.data.value} // This isn't working...
