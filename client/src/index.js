@@ -5,7 +5,6 @@ import App from './App/App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
 const Wrapper = () => {
     return (
         <MuiThemeProvider>

@@ -1,3 +1,0 @@
-mongod --dbpath ./data
-
-db.users.find().pretty();
