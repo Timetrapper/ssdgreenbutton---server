@@ -1,24 +1,7 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs'); 
+var mongoose = require("mongoose");
+var Account = require('../../models/user');
+var async = require('async');
 
-// user schema
-var UserSchema = mongoose.Schema({
-  email: {
-    type: String,
-    index: true
-  },
-  password: {
-      type: String,
-  },
-  role: {
-      type: String,
-  },
-  creationdate: {
-      type: Date
-  }
-});
-
-var User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.createUser = function(newUser, callback) {
     bcrypt.genSalt(10, function(err, salt) {

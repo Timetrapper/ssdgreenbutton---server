@@ -1,110 +1,23 @@
 var mongoose = require("mongoose");
-
-var AccountSchema = new mongoose.Schema({
-    feed: {
-        id: {
-            type: String
-        },
-        title: String,
-        updated: Date,
-        link: {
-            href: String,
-            rel: String
-        },
-        entries: {
-            type: [{
-                _id : false,
-                id: String,
-                links: {
-                    type: [{
-                        _id : false, 
-                        href: String,
-                        rel: String
-                    }],
-                    default: undefined
-                },
-                title: String,
-                content: {
-                    UsagePoint: {
-                        ServiceCategory: {
-                            kind: Number
-                        },
-                        ServiceDeliveryPoint: Object
-                    },
-                    LocalTimeParameters: {
-                        dstEndRule: String,
-                        dstOffset: Number,
-                        dstStartRule: String,
-                        tzOffset: Number
-                    },
-                    MeterReading: Object,
-                    ReadingType: {
-                        accumulationBehaviour: Number,
-                        commodity: Number,
-                        flowDirection: Number,
-                        intervalLength: Number,
-                        kind: Number,
-                        phase: Number,
-                        powerOfTenMultiplier: Number,
-                        uom: Number
-                    },
-                    IntervalBlock: {
-                        interval: {
-                            duration: Number,
-                            start: Number
-                        },
-                        IntervalReadings: {
-                            type: [{
-                                _id : false, 
-                                timePeriod: {
-                                    duration: {
-                                        type: Number
-                                    },
-                                    start: {
-                                        type: Number
-                                    }
-                                },
-                                cost: {
-                                    type: Number
-                                },
-                                value: {
-                                    type: Number
-                                }
-                            }],
-                            default: undefined
-                        }
-                    }
-                },
-                published: Date,
-                updated: Date
-            }],
-            default: undefined
-        }
-    }
-});
-
-<<<<<<< HEAD
-var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
+var Account = require('../../models/account');
+var async = require('async');
 
 module.exports.saveInDb = async function(inputJSON) {
-    console.log("save new object in 'saveInDb'");
     try {
-        let createSuccess = await Account.create(inputJSON);
-        console.log("creation result: " + createSuccess);
-    } catch (err) {
-        console.log("** error: " + err);
-    }
-};
-
-module.exports.updateDb = async function(inputJSON, userAccountId) {
-    try {
-        let objectId = new mongoose.Types.ObjectId(userAccountId);
-        let document = await Account.findOne({ _id : objectId});
+        let document = await Account.findOne({'feed.id': inputJSON.feed.id});
+        //console.log("document: " + JSON.stringify(document));
         if (document == null){
             //save json directly to db
-            console.log("failed to find the document");
+            console.log("save new object in 'saveInDb'");
+            try {
+                let createSuccess = await Account.create(inputJSON);
+                console.log("creation result: " + createSuccess);
+            } catch (err) {
+                console.log("** error: " + err);
+            }
         } else {
             //update the document in db
+            console.log("update an existing object in 'saveInDb'");
             try {
                 var inputIntervals;
                 for(var i=0; i<inputJSON.feed.entries.length; i++){
@@ -113,15 +26,15 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
                         }
                 }
                 let dbIntervals = await Account.aggregate([
-                    {$match: { _id: objectId}},
                     {$unwind: "$feed"},
+                    {$match: { "feed.id": inputJSON.feed.id}}, 
                     {$unwind:"$feed.entries"},
                     {$match: { "feed.entries.title": "Interval Block - 1"}},         
                     {$unwind:"$feed.entries.content"},         
                     {$unwind:"$feed.entries.content.IntervalBlock"},         
                     {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},         
                     {$group: {             
-                        _id: "$_id",         
+                        _id: "$feed.id",         
                         intervalReadings: {$addToSet: "$feed.entries.content.IntervalBlock.IntervalReadings"}         
                     }},         
                     {$project: { _id: 0, intervalReadings: 1 }}
@@ -143,7 +56,7 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
                 try{
                     let updateSuccess = await Account.update(
                         {
-                            _id: objectId,
+                            "feed.id": inputJSON.feed.id,
                             "feed.entries.title": "Interval Block - 1"
                         },
                         {$set: {
@@ -155,7 +68,7 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
                     );
                     console.log("update result: " + updateSuccess);
                     try{
-                        let newAccount = await Account.find({_id: objectId});
+                        let newAccount = await Account.find({'feed.id': inputJSON.feed.id});
                         return newAccount;
                     } catch (err) {
                         console.log("***** error: " + err);
@@ -174,14 +87,12 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
     
 };
 
-module.exports.getAccountIntervalEntry = async function(userAccountId) { 
+module.exports.getAccountIntervalEntry = async function(id) { 
     console.log("In 'getAccountIntervalEntry'");
-
     try {
-        let objectId = new mongoose.Types.ObjectId(userAccountId);
         let data = await Account.aggregate([
-            {$match: { _id: objectId}}, 
             {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
             {$unwind:"$feed.entries"},
             {$match: { "feed.entries.title": "Interval Block - 1"}},
             {$project: { entry: "$feed.entries" }}
@@ -194,14 +105,12 @@ module.exports.getAccountIntervalEntry = async function(userAccountId) {
     }
 };
 
-module.exports.getReadingType = async function(userAccountId) { 
+module.exports.getReadingType = async function(id) { 
     console.log("In 'getReadingType'");
-    
     try {
-        let objectId = new mongoose.Types.ObjectId(userAccountId);
         let data = await Account.aggregate([
-            {$match: { _id: objectId}}, 
             {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
             {$unwind:"$feed.entries"},
             {$unwind:"$feed.entries.content"},
             {$match: {"feed.entries.content.ReadingType": {$exists: true}}},
@@ -214,6 +123,28 @@ module.exports.getReadingType = async function(userAccountId) {
         return null;
     }
 };
+
+/*
+module.exports.getAccountIntervalEntry = function(id) { 
+    console.log("In 'getAccountIntervalEntry'");
+    return new Promise(function(resolve, reject){
+        Account.aggregate([
+            {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
+            {$unwind:"$feed.entries"},
+            {$match: { "feed.entries.title": "Interval Block - 1"}},
+            {$project: { entry: "$feed.entries" }}
+        ], function(err, data){
+            if (err){
+                reject(err);
+            } else {
+                resolve(data)
+            }
+        });
+    });
+};
+*/
+
 
 /* 
 module.exports.getAccountIntervalEntry = function(id, callback) { 
@@ -230,18 +161,6 @@ module.exports.getAccountIntervalEntry = function(id, callback) {
     });
 };
 */
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* module.exports.getAccountHourlyUsage = function(id, begining, end, callback) { 
@@ -299,6 +218,3 @@ module.exports.getAccountAggregatedUsage = function(begin, end, callback){
 }
 
  */
-=======
-var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
->>>>>>> 8161cea8b3b66bbde43fd8b71726e81d1664359b

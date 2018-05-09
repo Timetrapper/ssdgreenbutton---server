@@ -5,7 +5,7 @@
 <updated>2018-04-27T00:53:28Z</updated>
 <link href="https://www.bchydro.com/DataCustodian/espi/1_1/resource/RetailCustomer/1/UsagePoint/1" rel="self"/>
 <entry xmlns:espi="http://naesb.org/espi" xmlns="http://www.w3.org/2005/Atom">
-    <id>urn:uuid:49b26e67-dd90-49c2-a11d-d89beea5b093</id>
+    <id>urn:gs:49b26e67-dd90-49c2-a11d-d89beea5b093</id>
     <link href="https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint" rel="up"/>
     <link href="https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1" rel="self"/>
     <link href="https://www.bchydro.com/DataCustodian/espi/1_1/resource/Subscription/1/UsagePoint/1/MeterReading" rel="related"/>

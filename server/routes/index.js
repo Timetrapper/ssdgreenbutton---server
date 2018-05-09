@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 
-// get home page
 router.get('/', ensureAuthenticated, function(req, res) {
     res.render('index', {title: 'Express'});
 });
@@ -11,7 +10,7 @@ function ensureAuthenticated(req, res, next) {
         return next();
     } else {
         req.flash('error_msg', "You are not logged in");
-        //res.redirect('/login');
+        res.redirect('/login');
         res.redirect('/users/login');
     }
 }
