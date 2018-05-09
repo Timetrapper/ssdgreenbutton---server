@@ -1,9 +1,15 @@
 var mongoose = require("mongoose");
+var isEqual = require('lodash.isequal');
+var omit = require("object.omit");
+
+
+//var IntervalReading = require("./intervalReading");
 
 var AccountSchema = new mongoose.Schema({
     feed: {
         id: {
-            type: String
+            type: String, 
+            index: {unique: true}
         },
         title: String,
         updated: Date,
@@ -85,25 +91,67 @@ var AccountSchema = new mongoose.Schema({
 
 var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
 
-module.exports.saveInDb = async function(inputJSON) {
-    console.log("save new object in 'saveInDb'");
-    try {
-        let createSuccess = await Account.create(inputJSON);
-        console.log("creation result: " + createSuccess);
-    } catch (err) {
-        console.log("** error: " + err);
+omitObjectByValue = function(obj, value) {
+    obj = omit(obj, function (val, key) {
+        return val !== {};
+    });
+    for(var i in obj) {
+        if(obj.hasOwnProperty(i)){
+            var foundObj = omitObjectByValue(obj[i], value);
+        }
     }
+    return null;
 };
 
-module.exports.updateDb = async function(inputJSON, userAccountId) {
+compareKeys = function (JSONInput, SchemaInput) {
+    var JSONKeys = Object.keys(JSONInput).sort();
+    var SchemaKeys = Object.keys(SchemaInput).sort();
+
+    // Check that the objects contain the same keys.
+    if (JSON.stringify(JSONKeys) !== JSON.stringify(SchemaKeys)) {
+        return false
+    }
+
+    // Check that the keys in each object contain the same values.
+   /*  for (const key in JSONKeys) {
+        if (JSONInput[key] !== SchemaInput[key]) {
+            return false
+        }
+    } */
+
+    return true
+}
+module.exports.saveInDb = async function(inputJSON) {
     try {
-        let objectId = new mongoose.Types.ObjectId(userAccountId);
-        let document = await Account.findOne({ _id : objectId});
+        let document = await Account.findOne({'feed.id': inputJSON.feed.id});
+        //console.log("document: " + JSON.stringify(document));
         if (document == null){
             //save json directly to db
-            console.log("failed to find the document");
+            console.log("save new object in 'saveInDb'");
+            try {
+                var newAccount = new Account(inputJSON);
+                //newAccount.save();
+                console.log("schema object: " + JSON.parse(JSON.stringify(newAccount)));
+                console.log("real object: " + JSON.parse(JSON.stringify(inputJSON)));
+
+                inputJSON = omitObjectByValue(inputJSON, {});
+
+                if (compareKeys(JSON.parse(JSON.stringify(inputJSON)), JSON.parse(JSON.stringify(newAccount)))){
+                    console.log("valid JSON structure");
+                    //var newModel = new mongoose.Schema(inputJSON, {collection: invalidData});
+                    //newModel.save();
+                } else {
+                    console.log("there are some invalid fields in JSON");
+                }
+                return inputJSON;
+                //let createSuccess = await Account.create(inputJSON);
+                //console.log("creation result: " + createSuccess);
+            } catch (err) {
+                console.log("** error: " + err);
+            }
         } else {
             //update the document in db
+            console.log("update an axisting object in 'saveInDb'");
             try {
                 var inputIntervals;
                 for(var i=0; i<inputJSON.feed.entries.length; i++){
@@ -112,15 +160,15 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
                         }
                 }
                 let dbIntervals = await Account.aggregate([
-                    {$match: { _id: objectId}},
                     {$unwind: "$feed"},
+                    {$match: { "feed.id": inputJSON.feed.id}}, 
                     {$unwind:"$feed.entries"},
                     {$match: { "feed.entries.title": "Interval Block - 1"}},         
                     {$unwind:"$feed.entries.content"},         
                     {$unwind:"$feed.entries.content.IntervalBlock"},         
                     {$unwind:"$feed.entries.content.IntervalBlock.IntervalReadings"},         
                     {$group: {             
-                        _id: "$_id",         
+                        _id: "$feed.id",         
                         intervalReadings: {$addToSet: "$feed.entries.content.IntervalBlock.IntervalReadings"}         
                     }},         
                     {$project: { _id: 0, intervalReadings: 1 }}
@@ -142,7 +190,7 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
                 try{
                     let updateSuccess = await Account.update(
                         {
-                            _id: objectId,
+                            "feed.id": inputJSON.feed.id,
                             "feed.entries.title": "Interval Block - 1"
                         },
                         {$set: {
@@ -154,7 +202,7 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
                     );
                     console.log("update result: " + updateSuccess);
                     try{
-                        let newAccount = await Account.find({_id: objectId});
+                        let newAccount = await Account.find({'feed.id': inputJSON.feed.id});
                         return newAccount;
                     } catch (err) {
                         console.log("***** error: " + err);
@@ -173,14 +221,33 @@ module.exports.updateDb = async function(inputJSON, userAccountId) {
     
 };
 
-module.exports.getAccountIntervalEntry = async function(userAccountId) { 
+/*
+module.exports.getAccountIntervalEntry = function(id) { 
     console.log("In 'getAccountIntervalEntry'");
-
-    try {
-        let objectId = new mongoose.Types.ObjectId(userAccountId);
-        let data = await Account.aggregate([
-            {$match: { _id: objectId}}, 
+    return new Promise(function(resolve, reject){
+        Account.aggregate([
             {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
+            {$unwind:"$feed.entries"},
+            {$match: { "feed.entries.title": "Interval Block - 1"}},
+            {$project: { entry: "$feed.entries" }}
+        ], function(err, data){
+            if (err){
+                reject(err);
+            } else {
+                resolve(data)
+            }
+        });
+    });
+};
+*/
+
+module.exports.getAccountIntervalEntry = async function(id) { 
+    console.log("In 'getAccountIntervalEntry'");
+    try {
+        let data = await Account.aggregate([
+            {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
             {$unwind:"$feed.entries"},
             {$match: { "feed.entries.title": "Interval Block - 1"}},
             {$project: { entry: "$feed.entries" }}
@@ -193,14 +260,12 @@ module.exports.getAccountIntervalEntry = async function(userAccountId) {
     }
 };
 
-module.exports.getReadingType = async function(userAccountId) { 
+module.exports.getReadingType = async function(id) { 
     console.log("In 'getReadingType'");
-    
     try {
-        let objectId = new mongoose.Types.ObjectId(userAccountId);
         let data = await Account.aggregate([
-            {$match: { _id: objectId}}, 
             {$unwind: "$feed"},
+            {$match: { "feed.id": id}}, 
             {$unwind:"$feed.entries"},
             {$unwind:"$feed.entries.content"},
             {$match: {"feed.entries.content.ReadingType": {$exists: true}}},
