@@ -23,6 +23,8 @@ router.get("/:id", passport.authenticate('jwt', {session: false}), async functio
     }
 });
 
+router.get("/")
+
 /* 
 router.get("/:id", passport.authenticate('jwt', {session: false}), function(req, res){
     Account.getAccountIntervalEntry(req.params.id, function(err, data) {

@@ -7,7 +7,7 @@ var eyes = require('eyes');
 var async =require('async');
 var fs = require('fs');
 var http = require('http');
-var insertjsontomongo = require('../../insert/mongoinsertjson');
+var insertjsontomongo = require('../../_helpers/mongoinsert/mongoinsertjson');
 
 module.exports.XMLREQUEST = function() {
 // TODO: Add Timers, Add to
@@ -38,7 +38,7 @@ async.waterfall([
             } else {
                 console.log("CALLBACK------END-------");
                 eyes.inspect(result);
-                callback(null,result);
+                callback(null, result);
             }
         });
     }, 
@@ -61,3 +61,4 @@ async.waterfall([
 function finished() {
     console.log("Finished");
 }
+
