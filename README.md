@@ -1,29 +1,33 @@
+#### *This repo contains the Node.Js backend of this project.*
+#### *For the React frontend, [visit that repo](GITHUB ADDRESS).*
+
 # Green Button "Download My Data" Graphed
 
-Takes a "Green Button" data XML and parses it to JSON in a Node.js backend. Stores the data in a Mongo db. Graphs that data in a React frontend.
+Takes a "Green Button" data XML and parses it to JSON in a Node.Js backend. It stores the data in a MongoDB. The data is presented in graphs in a React frontend.
+
 Created for the [BCIT SSD](https://www.bcit.ca/study/programs/699ccertt) 2018 industry project, in collaboration with [Plasmatic Technologies Inc.](https://www.plasmatic.ai/)
 
 # Installation
 
-Download the server (GITHUB ADDRESS).
+1. Download the server (GITHUB ADDRESS).
 
-Download the client (GITHUB ADDRESS).
+2. Download the client (GITHUB ADDRESS).
 
-Run `npm install` in the directory containing "package.json" in each.
+3. Run `npm install` in the directory containing "package.json" for each.
 
 # Usage
 
-Download your Green Button data in an XML from your power utility company's website.
-For example, here are instructions for downloading your Green Button data [from BC Hydro.](https://www.bchydro.com/search.html?q=Where+can+I+get+my+billing+and+electricity+use+history%3F&qid=1348&ir_type=3)
+1. Download your Green Button data in an XML from your power utility company's website.
+For example, here are instructions for downloading your Green Button data [from BC Hydro](https://www.bchydro.com/search.html?q=Where+can+I+get+my+billing+and+electricity+use+history%3F&qid=1348&ir_type=3).
 
-Create a local Mongo database (or host one on mLab) and give it a collection named "greenbuttonapi".
+2. Create a local MongoDB (or host one on mLab) and give it a collection named "greenbuttonapi".
 Insert the connection string as the value matching key 'database_mlb' in *server -> config -> index.js*
 
-Start the client (`npm start`).
+3. Start the client (`npm start`).
 
-Start the server (`npm start` or `nodemon`).
+4. Start the server (`npm start` or `nodemon`).
 
-Navigate to the server, and upload your Green Button data XML. Your data will then be displayed as a chart. Note that the file is only parsed by your web browser, and not sent to a server. It is stored in the Mongo db.
+5. Navigate to the client, log in, and upload your Green Button data XML. Your data will then be displayed as a chart. The data is stored in the MongoDB.
 
 # Credits
 

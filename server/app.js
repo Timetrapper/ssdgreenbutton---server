@@ -12,7 +12,6 @@ var useExpressValidator = require('./config/expressValidator');
 var appSettings = require('./config/app');
 // Security
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 // Routes
 var routes = require('./routes/');
 var tokensApi = require('./routes/api/tokens');
@@ -26,7 +25,6 @@ var app = express();
 connectToDB.CONNECTTODB();
 // Set Express Validation
 useExpressValidator.USEVALIDATOR();
-
 // Express 
 var express = require("express");
 var bodyParser = require('body-parser');
@@ -35,20 +33,6 @@ var session = require('express-session');
 var path = require('path');
 var flash = require('connect-flash');
 var app = express();
-
-// Security
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
-
-
-// Routes
-var routes = require('./routes/');
-var tokensApi = require('./routes/api/tokens');
-var users = require('./routes/users');
-var index = require('./routes/index');
-var dataApi = require('./routes/api/data');
-
 
 app.use(cookieParser());
 
@@ -59,7 +43,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // set static folder
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // express session
 app.use(session({
@@ -109,7 +93,5 @@ app.set('port', config.port);
 app.listen(config.port, function () {
     console.log("Server started on port " + config.port)
 });
-
-
 
 module.exports = app;

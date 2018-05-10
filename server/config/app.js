@@ -12,8 +12,6 @@ var app = express();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-
-
 // Routes
 var routes = require('../routes/');
 var tokensApi = require('../routes/api/tokens');
