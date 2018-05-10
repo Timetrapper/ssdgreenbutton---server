@@ -114,6 +114,21 @@ class App extends Component {
       </header>
 
       <div className="Main-body-container">    
+
+        <div className="App-upload-button-wrapper">
+
+          <RaisedButton className="App-upload-button"
+            label="UPLOAD MY GREEN BUTTON XML FILE"
+            labelPosition="before"
+            style={styles.inputButton}
+            containerElement="label"
+            icon={<FileDownloadIcon />}
+            >
+            <input type="file" style={styles.xmlFileInput} />
+          </RaisedButton>
+
+        </div> {/*upload button wrapper*/}
+
         <div className="Bar-chart-wrapper">
           <Bar
             data={this.state.data}
@@ -180,19 +195,6 @@ class App extends Component {
 
         </div> {/*button wrapper*/}
 
-        <div className="App-upload-button-wrapper">
-
-          <RaisedButton className="App-upload-button"
-            label="UPLOAD MY GREEN BUTTON XML FILE"
-            labelPosition="before"
-            style={styles.inputButton}
-            containerElement="label"
-            icon={<FileDownloadIcon />}
-            >
-            <input type="file" style={styles.xmlFileInput} />
-          </RaisedButton>
-
-        </div> {/*upload button wrapper*/}
       </div> {/*main body tontainer*/}
 
       <footer className="App-footer">
