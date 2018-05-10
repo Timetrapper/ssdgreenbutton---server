@@ -155,13 +155,13 @@ class App extends Component {
 
       <footer className="App-footer">
         <div className="App-footer-images-container">
-          <a href="https://www.plasmatic.ai/">
+          <a href="https://plasmatic.ai/">
             <img src={plasmaticLogoFooter} className="App-plasmatic-logo-footer" alt="plasmaticLogo"/>
           </a>
-          <a href="http://www.greenbuttondata.org//">
+          <a href="http://greenbuttondata.org/">
             <img src={greenButtonLogoFooter} className="App-green-button-logo-footer" alt="greenButtonLogo"/>
           </a>
-          <a href="https://www.github.com/"> {/*add respository*/}
+          <a href="https://github.com/Timetrapper/ssdgreenbutton">
             <img src={githubLogoFooter} className="App-github-logo-footer" alt="githubLogo"/>
           </a>
         </div>

@@ -19,7 +19,7 @@ For example, here are instructions for downloading your Green Button data [from 
 Create a local Mongo database (or host one on mLab) and give it a collection named "greenbuttonapi".
 Insert the connection string as the value matching key 'database_mlb' in *server -> config -> index.js*
 
-Start the client (`npm start` or `nodemon`).
+Start the client (`npm start`).
 
 Start the server (`npm start` or `nodemon`).
 
