@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 var express = require("express");
 var router = express.Router();
 var passport = require('passport');
@@ -40,7 +42,7 @@ router.post('/register', function(req, res) {
     if (errors) {
         res.render('register', {
             errors: errors
-        })
+        });
     } else {
         var newUser = new User({
             email: email,
@@ -112,7 +114,7 @@ router.get("/users", (req, res, next) => {
             res.send(err);
         
         res.json(data);
-    })
+    });
 });
 router.get("/users/:id", (req, res, next) => {
     db.users.findOne({_id: mongojs.ObjectId(req.params.id)},function(err, data){
