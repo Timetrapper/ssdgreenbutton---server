@@ -35,15 +35,14 @@ router.get("/:id", passport.authenticate('jwt', {session: false}), function(req,
     });
 });
  */
-/* 
+
 router.post("/upload/", passport.authenticate('jwt', {session: false}), async function(req, res){
     try {
-        let data = await Account.saveInDb(JSON.parse(req.body.newData));
+        let data = await Account.updateDb(JSON.parse(req.body.newData), "5af368cf9037ae4e24d17625");
         res.json(data);
     } catch (err) {
         res.render('error', { error: err })
     }
 });
- */
 
 module.exports = router;

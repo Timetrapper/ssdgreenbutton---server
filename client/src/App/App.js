@@ -3,13 +3,29 @@ import { Bar } from 'nivo';
 import { withAlert } from 'react-alert';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import classNames from 'classnames';
-import githubLogo from './github.png';
-import greenButtonLogo from './green-button-logo.png';
-import greenButtonLogoFooter from './green-button.png'
-import plasmaticLogo from './plasmatic.png';
+import greenButtonImageHeader from './images/green-button-image-header.png';
+import titleImageHeader from './images/title-image-header.png';
+import githubLogoFooter from './images/github-logo-footer.png';
+import greenButtonLogoFooter from './images/green-button-logo-footer.png'
+import plasmaticLogoFooter from './images/plasmatic-logo-footer.png';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
+
+/* TODO:
+- Header Images Responsive (page)
+- Footer Images Responsive (page)
+- Footer Images Margin
+- Graph Responsive (page)
+- Graph Axis (show)
+- Graph Bars (possible syling change)
+- Button Similar Size
+
+- Graph Responsive (data & onClick)
+
+- Graphing Functions (based on buttons)
+- Graphing Functions (onClick)
+*/
 
 class App extends Component {
   constructor() {
@@ -67,33 +83,20 @@ class App extends Component {
   }
 
   render() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={greenButtonImageHeader} className="App-green-button-image-header" alt="greenButtonImageHeader" />
+        <img src={titleImageHeader} className="App-title-image-header" alt="titleImageHeader" />
+      </header>
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Green Button Data</h1>
-          <img src={greenButtonLogo} className="App-green-button-logo" alt="greenButtonLogo" />
-        </header>
-
-  <div className="Main-body-container">    
-
-        <div>  
-          <RaisedButton
-            name="file" 
-            id="file"
-            className="App-upload-button"
-            containerElement='label'
-            label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
-            <input htmlFor="file" type="file"/>
-          </RaisedButton>
-        </div> 
-
+      <div className="Main-body-container">    
         <div className="Bar-chart-wrapper">
           <Bar
             data={this.state.data}
             keys={this.state.data.value} // This isn't working...
-            width={1200}
-            height={800}
+            width={1000}
+            height={500}
             margin={{
               "top": 20,
               "right": 10,
@@ -109,49 +112,64 @@ class App extends Component {
               format: d => `${d} kWh`
             }}
           />
-        </div>
+        </div> {/*bar chart wrapper*/}
 
-        <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 24 Hour Period')) } }
-          >Display 24 Hours
-        </RaisedButton>
+        <div className="App-button-wrapper"> 
+          <RaisedButton className="App-buttons"
+            onClick={() => {(window.confirm('Display 24 Hour Period (by Hour)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
+            >Display 24 Hours
+          </RaisedButton>
 
-        <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 7 Day Period')) } }
-          >Display 7 Days
-        </RaisedButton>
+          <RaisedButton className="App-buttons"
+            onClick={() => {(window.confirm('Display 7 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
+            >Display 7 Days
+          </RaisedButton>
 
-        <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 365 Day Period')) } }
-          >Display 30 Days
-        </RaisedButton>
+          <RaisedButton className="App-buttons"
+            onClick={() => {(window.confirm('Display 30 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
+            >Display 30 Days
+          </RaisedButton>
 
-        <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 365 Day Period')) } }
-          >Display 365 Days
-        </RaisedButton>
+          <RaisedButton className="App-buttons"
+            onClick={() => {(window.confirm('Display 365 Day Period (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
+            >Display 365 Days
+          </RaisedButton>
 
-        <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display All-Time')) } }
-          >Display All-Time
-        </RaisedButton>
+          <RaisedButton className="App-buttons"
+            onClick={() => {(window.confirm('Display All-Time (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
+            >Display All-Time
+          </RaisedButton>
+        </div> {/*button wrapper*/}
 
-        </div> {/*main body wrapper*/}
+        <div className="App-upload-button-wrapper"> 
+          <RaisedButton
+            name="file" 
+            id="file"
+            className="App-upload-button"
+            containerElement='label'
+            label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
+            <input htmlFor="file" type="file"/>
+          </RaisedButton>
+        </div> {/*upload button wrapper*/}
+      </div> {/*main body tontainer*/}
 
-        <footer className="App-footer">
-          <a href="https://www.plasmatic.ai/">
-            <img src={plasmaticLogo} className="App-plasmatic-logo" alt="plasmaticLogo"/>
+      <footer className="App-footer">
+        <div className="App-footer-images-container">
+          <a href="https://plasmatic.ai/">
+            <img src={plasmaticLogoFooter} className="App-plasmatic-logo-footer" alt="plasmaticLogo"/>
           </a>
-          <a href="http://www.greenbuttondata.org//">
+          <a href="http://greenbuttondata.org/">
             <img src={greenButtonLogoFooter} className="App-green-button-logo-footer" alt="greenButtonLogo"/>
           </a>
-          <a href="https://www.github.com/"> {/*add respository*/}
-            <img src={githubLogo} className="App-github-logo" alt="githubLogo"/>
+          <a href="https://github.com/Timetrapper/ssdgreenbutton">
+            <img src={githubLogoFooter} className="App-github-logo-footer" alt="githubLogo"/>
           </a>
-        </footer>
-      </div> 
-    );
-  }
-}
+        </div>
+      </footer>
+
+  </div> //App wrapper (whole page)
+  ); // Close return
+} // Close render
+} // close class App
 
 export default App;
