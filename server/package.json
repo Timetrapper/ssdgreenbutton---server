@@ -31,7 +31,7 @@
     "lokijs": "^1.5.3",
     "moment": "^2.22.1",
     "mongojs": "^2.5.0",
-    "mongoose": "^5.0.16",
+    "mongoose": "^5.0.18",
     "npm": "^6.0.0",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
