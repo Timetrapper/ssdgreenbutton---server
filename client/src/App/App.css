@@ -45,15 +45,15 @@
 }
 
 .Bar-chart-wrapper {
-  padding: 40px;
-  margin: 40px;
+  padding: 20px;
+  margin: 20px;
 }
 
 .App-button-wrapper {
   align-content: center;
   float: center;
   padding: 10px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .App-buttons {
@@ -73,7 +73,7 @@
   align-content: center;
   float: center;
   padding: 10px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .App-upload-button {
@@ -84,6 +84,10 @@
   margin-right: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.App-upload-button::-webkit-file-upload-button {
+  visibility: hidden;
 }
 
 .App-footer {
