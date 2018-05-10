@@ -1,7 +1,7 @@
-# Green Button "Download My Data" Graphed
+#### *This repo contains the Node.Js backend of this project.*
+#### *For the React frontend, [visit that repo](GITHUB ADDRESS).*
 
-#### This repo contains the Node.Js backend of this project.
-#### For the React frontend, [visit that repo](GITHUB ADDRESS).
+# Green Button "Download My Data" Graphed
 
 Takes a "Green Button" data XML and parses it to JSON in a Node.Js backend. It stores the data in a MongoDB. The data is presented in graphs in a React frontend.
 
