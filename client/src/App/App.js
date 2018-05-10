@@ -12,6 +12,23 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
 
+/* To Do:
+
+- Header Images Responsive (page)
+- Footer Images Responsive (page)
+- Footer Images Margin
+- Graph Responsive (page)
+- Graph Axis (show)
+- Graph Bars (possible syling change)
+- Button Similar Size
+
+- Graph Responsive (data & onClick)
+
+- Graphing Functions (based on buttons)
+- Graphing Functions (onClick)
+
+*/
+
 class App extends Component {
   constructor() {
     super();
@@ -70,7 +87,9 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
+
+<div className="App">
+
         <header className="App-header">
           <img src={greenButtonImageHeader} className="App-green-button-image-header" alt="greenButtonImageHeader" />
           <img src={titleImageHeader} className="App-title-image-header" alt="titleImageHeader" />
@@ -83,7 +102,7 @@ class App extends Component {
             data={this.state.data}
             keys={this.state.data.value} // This isn't working...
             width={1000}
-            height={600}
+            height={500}
             margin={{
               "top": 20,
               "right": 10,
@@ -99,34 +118,36 @@ class App extends Component {
               format: d => `${d} kWh`
             }}
           />
-        </div>
+        </div> {/*bar chart wrapper*/}
 
+      <div className="App-button-wrapper"> 
         <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 24 Hour Period')) } }
+          onClick={() => {(window.confirm('Display 24 Hour Period (by Hour)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
           >Display 24 Hours
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 7 Day Period')) } }
+          onClick={() => {(window.confirm('Display 7 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
           >Display 7 Days
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 365 Day Period')) } }
+          onClick={() => {(window.confirm('Display 30 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
           >Display 30 Days
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display 365 Day Period')) } }
+          onClick={() => {(window.confirm('Display 365 Day Period (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
           >Display 365 Days
         </RaisedButton>
 
         <RaisedButton className="App-buttons"
-          onClick={() => {(window.confirm('Display All-Time')) } }
+          onClick={() => {(window.confirm('Display All-Time (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
           >Display All-Time
         </RaisedButton>
+      </div> {/*button wrapper*/}
 
-        <div>  
+      <div className="App-upload-button-wrapper"> 
           <RaisedButton
             name="file" 
             id="file"
@@ -135,11 +156,12 @@ class App extends Component {
             label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
             <input htmlFor="file" type="file"/>
           </RaisedButton>
-        </div> 
+      </div> {/*upload button wrapper*/}
 
-        </div> {/*main body wrapper*/}
+        </div> {/*main body tontainer*/}
 
         <footer className="App-footer">
+            <div className="App-footer-images-container">
           <a href="https://www.plasmatic.ai/">
             <img src={plasmaticLogoFooter} className="App-plasmatic-logo-footer" alt="plasmaticLogo"/>
           </a>
@@ -149,8 +171,10 @@ class App extends Component {
           <a href="https://www.github.com/"> {/*add respository*/}
             <img src={githubLogoFooter} className="App-github-logo-footer" alt="githubLogo"/>
           </a>
+            </div>
         </footer>
-      </div> 
+
+      </div> //App wrapper (whole page)
     );
   }
 }
