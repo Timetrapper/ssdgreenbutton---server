@@ -83,14 +83,16 @@ var AccountSchema = new mongoose.Schema({
     }
 });
 
-<<<<<<< HEAD
-var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
+var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata2'); 
 
 module.exports.saveInDb = async function(inputJSON) {
-    console.log("save new object in 'saveInDb'");
     try {
-        let createSuccess = await Account.create(inputJSON);
-        console.log("creation result: " + createSuccess);
+        console.log("save new object in 'saveInDb'");
+        var newAccount = new Account(inputJSON);
+        let data = await newAccount.save();
+        console.log("data is: " + JSON.stringify(data));
+        //console.log("id is: " + data._id);
+        return data._id;
     } catch (err) {
         console.log("** error: " + err);
     }
@@ -299,6 +301,3 @@ module.exports.getAccountAggregatedUsage = function(begin, end, callback){
 }
 
  */
-=======
-var Account = module.exports = mongoose.model('Account', AccountSchema, 'greenbuttondata'); 
->>>>>>> 8161cea8b3b66bbde43fd8b71726e81d1664359b

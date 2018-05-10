@@ -7,11 +7,22 @@ var eyes = require('eyes');
 var Account = require('../../models/account');
 var Query = require('../../_helpers/mongoqueries/energyqueries');
 var async = require('async');
+var User = require('../../models/user');
 
-module.exports.TOMONGOFROMXML = function(jSONObject)  {
+module.exports.TOMONGOFROMXML = async function(jSONObject, currentUser)  {
   var post_model = Account;
   var parsed = JSON.parse(jSONObject);
-  var newData = new post_model(parsed);
-  Query.saveInDb(newData);
+  console.log("currentUser: " + JSON.stringify(currentUser));
+  //var newData = new post_model(parsed);
+  if (!currentUser.hasOwnProperty("dataID")) {
+    console.log("currentUser.dataID is null");
+    var newDataID = await Account.saveInDb(parsed);
+    console.log("newDataID: "+newDataID);
+    User.addDataID(currentUser, newDataID);
+  } else {
+    console.log("currentUser.dataID is " + currentUser.dataID);
+    Account.updateDb(parsed, currentUser.dataID);
+  }
+  //Query.saveInDb(newData);
 };
 

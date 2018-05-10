@@ -3,6 +3,7 @@ var router = express.Router();
 var config = require('../../config');
 var moment = require('moment');
 var passport = require('passport');
+var handleXMLToJSON = require('.//xml');
 
 var Account = require("../../models/account");
 /*
@@ -13,17 +14,15 @@ router.get("/:id", passport.authenticate('jwt', {session: false}), function(req,
 });
 */
 
-router.get("/:id", passport.authenticate('jwt', {session: false}), async function(req, res){
+router.get("/data/:id", passport.authenticate('jwt', {session: false}), async function(req, res){
     try {
-        let data = await Account.getAccountIntervalEntry(req.params.id);
-        let dataReadingType = await Account.getReadingType(req.params.id);
+        let data = await Account.getAccountIntervalEntry(JSON.stringify(req.params.id));
+        let dataReadingType = await Account.getReadingType(JSON.stringify(req.params.id));
         res.json({ "ReadingType": dataReadingType[0], "intervalReadings": data[0]});
     } catch (err) {
-        res.err(err)
+        res.send(err)
     }
 });
-
-router.get("/")
 
 /* 
 router.get("/:id", passport.authenticate('jwt', {session: false}), function(req, res){
@@ -36,13 +35,26 @@ router.get("/:id", passport.authenticate('jwt', {session: false}), function(req,
 });
  */
 
-router.post("/upload/", passport.authenticate('jwt', {session: false}), async function(req, res){
+router.get("/upload", passport.authenticate('jwt', {session: false}), async function(req, res){
+
+    //Call XML Parse Request
+    try {
+        var currentUser = JSON.parse(JSON.stringify(req.user));
+        var currentUserID = currentUser._id;
+        console.log("current user: " + currentUser);
+        console.log("id: " + currentUserID);
+        handleXMLToJSON.XMLREQUEST(currentUser);
+    } catch (err) {
+        console.log("error : " + err);
+    }
+/* 
     try {
         let data = await Account.updateDb(JSON.parse(req.body.newData), "5af368cf9037ae4e24d17625");
         res.json(data);
     } catch (err) {
         res.render('error', { error: err })
     }
+     */
 });
 
 module.exports = router;
