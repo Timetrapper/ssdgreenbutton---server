@@ -1,9 +1,9 @@
 # Green Button "Download My Data" Graphed
 
-### THIS REPO CONTAINS THE BACKEND OF THIS PROJECT
-### For the front end, [visit that repo](GITHUB ADDRESS).
+#### This repo contains the Node.Js backend of this project.
+#### For the React frontend, [visit that repo](GITHUB ADDRESS).
 
-Takes a "Green Button" data XML and parses it to JSON in a Node.js backend. It stores the data in a MongoDB. The data is presented in graphs in a React frontend.
+Takes a "Green Button" data XML and parses it to JSON in a Node.Js backend. It stores the data in a MongoDB. The data is presented in graphs in a React frontend.
 
 Created for the [BCIT SSD](https://www.bcit.ca/study/programs/699ccertt) 2018 industry project, in collaboration with [Plasmatic Technologies Inc.](https://www.plasmatic.ai/)
 
