@@ -3,7 +3,7 @@ import { Bar } from 'nivo';
 import { withAlert } from 'react-alert';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import classNames from 'classnames';
-import GraphIcon from 'material-ui/svg-icons/file/bar-chart';
+//import GraphIcon from 'material-ui/svg-icons/file/bar-chart';
 import FileDownloadIcon from 'material-ui/svg-icons/file/file-download';
 import greenButtonImageHeader from './images/green-button-image-header.png';
 import titleImageHeader from './images/title-image-header.png';
@@ -180,7 +180,7 @@ class App extends Component {
                       label="Display 7 Days"
                       labelPosition="before"
                       style={styles.button}
-                      icon={<GraphIcon />}
+                      //icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display 7 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
             ></RaisedButton>
 
@@ -188,7 +188,7 @@ class App extends Component {
                       label="Display 30 Days"
                       labelPosition="before"
                       style={styles.button}
-                      icon={<GraphIcon />}
+                      //icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display 30 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
             ></RaisedButton>
 
@@ -196,7 +196,7 @@ class App extends Component {
                       label="Display 365 Days"
                       labelPosition="before"
                       style={styles.button}
-                      icon={<GraphIcon />}
+                      //icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display 365 Day Period (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
             ></RaisedButton>
 
@@ -204,7 +204,7 @@ class App extends Component {
                       label="Display All-Time"
                       labelPosition="before"
                       style={styles.button}
-                      icon={<GraphIcon />}
+                      //icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display All-Time (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
             ></RaisedButton>
 
