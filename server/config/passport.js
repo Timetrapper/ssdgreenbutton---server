@@ -12,12 +12,13 @@ module.exports = function(passport) {
     secretOrKey: config.secret
   };
   passport.use(new JwtStrategy(jwtOptions, function(jwt_payload, done) {
-    console.log(jwt_payload._id);
-    User.findOne({id: jwt_payload.sub}, function(err, user) {
+    console.log("jwt_payload._id: "+JSON.stringify(jwt_payload));
+    User.findOne({_id: jwt_payload.data._id}, function(err, user) {
       if (err) { 
           return done(err, false); 
       }
       if (user) {
+        console.log("passport user: "+user);
         done(null, user);
       } else {
         done(null, false);

@@ -56,6 +56,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// bring in passport strategy we defined
+require('./config/passport')(passport);
+
+
 // connect flash middleware
 app.use(flash());
 
@@ -71,6 +75,7 @@ app.use(function (req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/token', tokensApi);
+app.use('/data', dataApi);
 
 
 // Call XML Parse Request

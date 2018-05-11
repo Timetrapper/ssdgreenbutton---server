@@ -3,6 +3,8 @@ import { Bar } from 'nivo';
 import { withAlert } from 'react-alert';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import classNames from 'classnames';
+import GraphIcon from 'material-ui/svg-icons/file/bar-chart';
+import FileDownloadIcon from 'material-ui/svg-icons/file/file-download';
 import greenButtonImageHeader from './images/green-button-image-header.png';
 import titleImageHeader from './images/title-image-header.png';
 import githubLogoFooter from './images/github-logo-footer.png';
@@ -14,18 +16,37 @@ import React, { Component } from 'react';
 import { RegisterPage } from '../RegistrationPage/RegistrationPage';
 /* TODO:
 - Header Images Responsive (page)
-- Footer Images Responsive (page)
-- Footer Images Margin
 - Graph Responsive (page)
 - Graph Axis (show)
 - Graph Bars (possible syling change)
-- Button Similar Size
 
 - Graph Responsive (data & onClick)
 
 - Graphing Functions (based on buttons)
 - Graphing Functions (onClick)
 */
+
+const styles = {
+  button: {
+    margin: 10,
+    width: 240,
+  },
+  inputButton: {
+    margin: 10,
+    width: 400,
+  },
+  xmlFileInput: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
+  },
+};
+
 
 class App extends Component {
   constructor() {
@@ -77,6 +98,26 @@ class App extends Component {
       },
       {
         id: "L",
+        value: 20
+      },
+      {
+        id: "M",
+        value: 20
+      },
+      {
+        id: "N",
+        value: 20
+      },
+      {
+        id: "O",
+        value: 20
+      },
+      {
+        id: "P",
+        value: 20
+      },
+      {
+        id: "Q",
         value: 18
       }
     ] };
@@ -86,10 +127,25 @@ class App extends Component {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={greenButtonImageHeader} className="App-green-button-image-header" alt="greenButtonImageHeader" />
-        <img src={titleImageHeader} className="App-title-image-header" alt="titleImageHeader" />
+        <img src={greenButtonImageHeader} className="App-green-button-image-header" alt="greenButtonImageHeader"/>
+        <img src={titleImageHeader} className="App-title-image-header" alt="titleImageHeader"/>
       </header>
       <div className="Main-body-container">    
+
+        <div className="App-upload-button-wrapper">
+
+          <RaisedButton className="App-upload-button"
+            label="UPLOAD MY GREEN BUTTON XML FILE"
+            labelPosition="before"
+            style={styles.inputButton}
+            containerElement="label"
+            icon={<FileDownloadIcon />}
+            >
+            <input type="file" style={styles.xmlFileInput} />
+          </RaisedButton>
+
+        </div> {/*upload button wrapper*/}
+
         <div className="Bar-chart-wrapper">
           <Bar
             data={this.state.data}
@@ -105,51 +161,55 @@ class App extends Component {
             indexBy='id'
             padding={0.2}
             //axisBottom={{legend: "USERS", legendPosition: "center"}}
-            colors={["#61cdbb", "#97e3d5", "#f47560", "#e25c3b"]}
+            colors={"#58C3DC"}
+            padding={0.25}
             axisLeft={{
               // using custom function
               format: d => `${d} kWh`
             }}
           />
         </div> {/*bar chart wrapper*/}
+        <div className="App-button-wrapper">
 
-        <div className="App-button-wrapper"> 
           <RaisedButton className="App-buttons"
             onClick={() => {this.handleclick} }
             >Display 24 Hours
           </RaisedButton>
             
           <RaisedButton className="App-buttons"
+                      label="Display 7 Days"
+                      labelPosition="before"
+                      style={styles.button}
+                      icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display 7 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
-            >Display 7 Days
-          </RaisedButton>
+            ></RaisedButton>
 
           <RaisedButton className="App-buttons"
+                      label="Display 30 Days"
+                      labelPosition="before"
+                      style={styles.button}
+                      icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display 30 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
-            >Display 30 Days
-          </RaisedButton>
+            ></RaisedButton>
 
           <RaisedButton className="App-buttons"
+                      label="Display 365 Days"
+                      labelPosition="before"
+                      style={styles.button}
+                      icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display 365 Day Period (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
-            >Display 365 Days
-          </RaisedButton>
+            ></RaisedButton>
 
           <RaisedButton className="App-buttons"
+                      label="Display All-Time"
+                      labelPosition="before"
+                      style={styles.button}
+                      icon={<GraphIcon />}
             onClick={() => {(window.confirm('Display All-Time (by Monthly Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
-            >Display All-Time
-          </RaisedButton>
+            ></RaisedButton>
+
         </div> {/*button wrapper*/}
 
-        <div className="App-upload-button-wrapper"> 
-          <RaisedButton
-            name="file" 
-            id="file"
-            className="App-upload-button"
-            containerElement='label'
-            label='UPLOAD MY GREEN BUTTON XML FILE HERE'>
-            <input htmlFor="file" type="file"/>
-          </RaisedButton>
-        </div> {/*upload button wrapper*/}
       </div> {/*main body tontainer*/}
 
       <footer className="App-footer">

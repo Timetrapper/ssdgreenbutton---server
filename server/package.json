@@ -26,6 +26,7 @@
     "express-session": "*",
     "express-validator": "^5.2.0",
     "eyes": "^0.1.8",
+    "jade": "^1.11.0",
     "json": "^9.0.6",
     "jsonwebtoken": "^8.2.1",
     "lokijs": "^1.5.3",

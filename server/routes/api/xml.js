@@ -9,7 +9,7 @@ var fs = require('fs');
 var http = require('http');
 var insertjsontomongo = require('../../_helpers/mongoinsert/mongoinsertjson');
 
-module.exports.XMLREQUEST = function() {
+module.exports.XMLREQUEST = function(currentUser) {
 // TODO: Add Timers, Add to
 async.waterfall([
     function(callback) {
@@ -44,7 +44,8 @@ async.waterfall([
     }, 
     function(json, callback) {
        var jsonObject = JSON.stringify(json);
-       //insertjsontomongo.TOMONGOFROMXML(jsonObject);
+       console.log("inserttojson json: "+ jsonObject)
+       insertjsontomongo.TOMONGOFROMXML(jsonObject, currentUser);
        callback();
     }
 ], function(err, result) {
