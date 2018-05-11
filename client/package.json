@@ -10,10 +10,11 @@
     "nivo": "^0.31.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
-    "react-alert": "^4.0.3",
+    "react-alert": "^4.0.4",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
-    "react-transition-group": "^2.3.1"
+    "react-transition-group": "^2.3.1",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "set PORT=4000 && react-scripts start",

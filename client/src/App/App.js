@@ -1,4 +1,4 @@
-import './App.css';
+import '../styles/App.css';
 import { Bar } from 'nivo';
 import { withAlert } from 'react-alert';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
@@ -11,7 +11,7 @@ import plasmaticLogoFooter from './images/plasmatic-logo-footer.png';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import React, { Component } from 'react';
-
+import { RegisterPage } from '../RegistrationPage/RegistrationPage';
 /* TODO:
 - Header Images Responsive (page)
 - Footer Images Responsive (page)
@@ -89,7 +89,6 @@ class App extends Component {
         <img src={greenButtonImageHeader} className="App-green-button-image-header" alt="greenButtonImageHeader" />
         <img src={titleImageHeader} className="App-title-image-header" alt="titleImageHeader" />
       </header>
-
       <div className="Main-body-container">    
         <div className="Bar-chart-wrapper">
           <Bar
@@ -116,10 +115,10 @@ class App extends Component {
 
         <div className="App-button-wrapper"> 
           <RaisedButton className="App-buttons"
-            onClick={() => {(window.confirm('Display 24 Hour Period (by Hour)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
+            onClick={() => {this.handleclick} }
             >Display 24 Hours
           </RaisedButton>
-
+            
           <RaisedButton className="App-buttons"
             onClick={() => {(window.confirm('Display 7 Day Period (by Daily Average)')), (window.confirm('** CHANGE GRAPH FUNCTION**')) } }
             >Display 7 Days
