@@ -16,8 +16,6 @@ import React, { Component } from 'react';
 
 /* TODO:
 - Header Images Responsive (page)
-- Footer Images Responsive (page)
-- Footer Images Margin
 - Graph Responsive (page)
 - Graph Axis (show)
 - Graph Bars (possible syling change)
@@ -100,6 +98,26 @@ class App extends Component {
       },
       {
         id: "L",
+        value: 20
+      },
+      {
+        id: "M",
+        value: 20
+      },
+      {
+        id: "N",
+        value: 20
+      },
+      {
+        id: "O",
+        value: 20
+      },
+      {
+        id: "P",
+        value: 20
+      },
+      {
+        id: "Q",
         value: 18
       }
     ] };
@@ -144,7 +162,8 @@ class App extends Component {
             indexBy='id'
             padding={0.2}
             //axisBottom={{legend: "USERS", legendPosition: "center"}}
-            colors={["#61cdbb", "#97e3d5", "#f47560", "#e25c3b"]}
+            colors={"#58C3DC"}
+            padding={0.25}
             axisLeft={{
               // using custom function
               format: d => `${d} kWh`
