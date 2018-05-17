@@ -1,5 +1,4 @@
-#### *This repo contains the Node.Js backend of this project.*
-#### *For the React frontend, [visit that repo](GITHUB ADDRESS).*
+#### *This repo contains the Node.Js backend of this project, and the React frontend.*
 
 # Green Button "Download My Data" Graphed
 
@@ -9,11 +8,9 @@ Created for the [BCIT SSD](https://www.bcit.ca/study/programs/699ccertt) 2018 in
 
 # Installation
 
-1. Download the server (GITHUB ADDRESS).
+1. Download this repo, containing the client and server.
 
-2. Download the client (GITHUB ADDRESS).
-
-3. Run `npm install` in the directory containing "package.json" for each.
+2. Run `npm install` in the client directory and the server directory containing "package.json" for each.
 
 # Usage
 
