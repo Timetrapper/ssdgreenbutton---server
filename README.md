@@ -11,7 +11,7 @@ Created for the [BCIT SSD](https://www.bcit.ca/study/programs/699ccertt) 2018 in
 
 1. Download the server (https://github.com/ThorWithoutTheH/ssdgreenbutton---client).
 
-2. Download the client (https://github.com/Timetrapper/ssdgreenbutton).
+2. Download the client (https://github.com/Timetrapper/ssdgreenbutton---server).
 
 3. Run `npm install` in the directory containing "package.json" for each.
 
