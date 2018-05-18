@@ -1,5 +1,5 @@
 #### *This repo contains the Node.Js backend of this project.*
-#### *For the React frontend, [visit that repo](GITHUB ADDRESS).*
+#### *For the React frontend, [visit that repo](https://github.com/ThorWithoutTheH/ssdgreenbutton---client).*
 
 # Green Button "Download My Data" Graphed
 
@@ -9,9 +9,9 @@ Created for the [BCIT SSD](https://www.bcit.ca/study/programs/699ccertt) 2018 in
 
 # Installation
 
-1. Download the server (GITHUB ADDRESS).
+1. Download the server (https://github.com/ThorWithoutTheH/ssdgreenbutton---client).
 
-2. Download the client (GITHUB ADDRESS).
+2. Download the client (https://github.com/Timetrapper/ssdgreenbutton).
 
 3. Run `npm install` in the directory containing "package.json" for each.
 
