@@ -1,6 +1,6 @@
 module.exports = {
   // Database connection information
-  'database_mlb':'mongodb://greenbuttonadmin:bcit123@ds259089.mlab.com:59089/greenbuttonapi',
+  'database_mlb':'', //CONNECTION STRING HERE
   'database_local': 'users',
   // Setting port for server
   'port': process.env.PORT || 3000,
